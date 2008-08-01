@@ -64,6 +64,7 @@
     <Compile Include="FakeSender.cs" />
     <Compile Include="Femur.cs" />
     <Compile Include="IK.cs" />
+    <Compile Include="ILeg.cs" />
     <Compile Include="InstructionPacketBase.cs" />
     <Compile Include="InstructionPacketPing.cs" />
     <Compile Include="InstructionPacketSyncCOMPLIANCE_MARGIN.cs" />
@@ -71,12 +72,15 @@
     <Compile Include="InstructionPacketSyncPunch.cs" />
     <Compile Include="ISender.cs" />
     <Compile Include="JointAngeles.cs" />
+    <Compile Include="Leg.cs" />
     <Compile Include="Movment.cs" />
+    <Compile Include="Phoenix.cs" />
+    <Compile Include="Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RobotFactory.cs" />
     <Compile Include="ServoBase.cs" />
     <Compile Include="Tests\ConnectTest.cs" />
     <Compile Include="Coxa.cs" />
-    <Compile Include="Tests\Femur.cs" />
     <Compile Include="Tests\IKTests.cs" />
     <Compile Include="Tests\MovmentTest.cs" />
     <Compile Include="Tests\RobotTest.cs" />

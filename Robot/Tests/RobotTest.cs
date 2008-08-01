@@ -1,5 +1,4 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace Robot.Tests
 {
@@ -62,6 +61,63 @@ namespace Robot.Tests
 
 
             //Vill ha vilka vinklar de olika lederna ska vara i med offset;
+
         }
+
+        [Test]
+        public void CanSetUpStartPosision()
+        {
+            //Startposision all axis to 0
+
+
+            Phoenix phoenix = RobotFactory.CreatePhoenix();
+
+            phoenix.StartPosision();
+          
+
+            Assert.AreEqual(0, phoenix.lfl.Coxa.Angle);
+            Assert.AreEqual(0, phoenix.lfl.Femur.Angle);
+            Assert.AreEqual(0, phoenix.lfl.Tibia.Angle);
+            Assert.AreEqual(5.7, phoenix.lfl.X);
+            Assert.AreEqual(10.4, phoenix.lfl.Y);
+            Assert.AreEqual(-9.9, phoenix.lfl.Z);
+
+            Assert.AreEqual(0, phoenix.rfl.Coxa.Angle);
+            Assert.AreEqual(0, phoenix.rfl.Femur.Angle);
+            Assert.AreEqual(0, phoenix.rfl.Tibia.Angle);
+            Assert.AreEqual(5.7, phoenix.rfl.X);
+            Assert.AreEqual(10.4, phoenix.rfl.Y);
+            Assert.AreEqual(-9.9, phoenix.rfl.Z);
+
+            Assert.AreEqual(0, phoenix.lml.Coxa.Angle);
+            Assert.AreEqual(0, phoenix.lml.Femur.Angle);
+            Assert.AreEqual(0, phoenix.lml.Tibia.Angle);
+            Assert.AreEqual(11.4, phoenix.lml.X);
+            Assert.AreEqual(10.4, phoenix.lml.Y);
+            Assert.AreEqual(0.0, phoenix.lml.Z);
+
+            Assert.AreEqual(0, phoenix.rml.Coxa.Angle);
+            Assert.AreEqual(0, phoenix.rml.Femur.Angle);
+            Assert.AreEqual(0, phoenix.rml.Tibia.Angle);
+            Assert.AreEqual(11.4, phoenix.rml.X);
+            Assert.AreEqual(10.4, phoenix.rml.Y);
+            Assert.AreEqual(0.0, phoenix.rml.Z);
+
+            Assert.AreEqual(0, phoenix.lrl.Coxa.Angle);
+            Assert.AreEqual(0, phoenix.lrl.Femur.Angle);
+            Assert.AreEqual(0, phoenix.lrl.Tibia.Angle);
+            Assert.AreEqual(5.7, phoenix.lrl.X);
+            Assert.AreEqual(10.4, phoenix.lrl.Y);
+            Assert.AreEqual(9.9, phoenix.lrl.Z);
+
+            Assert.AreEqual(0, phoenix.rrl.Coxa.Angle);
+            Assert.AreEqual(0, phoenix.rrl.Femur.Angle);
+            Assert.AreEqual(0, phoenix.rrl.Tibia.Angle);
+            Assert.AreEqual(5.7, phoenix.rrl.X);
+            Assert.AreEqual(10.4, phoenix.rrl.Y);
+            Assert.AreEqual(9.9, phoenix.rrl.Z);
+            
+        }
+      
     }
 }

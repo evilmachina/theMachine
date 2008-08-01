@@ -9,6 +9,8 @@ namespace Robot
         private readonly double _maxAngle;
         private readonly Side _side;
 
+        private double _angle;
+
         public ServoBase(double length, double offset, int servoId, double minAngle, double maxAngle, Side side)
         {
             _length = length;
@@ -47,6 +49,12 @@ namespace Robot
         public Side Side
         {
             get { return _side; }
+        }
+        
+        public double Angle
+        {
+            get { return _angle; }
+            set { _angle = value; }
         }
     }
 }
