@@ -1,3 +1,5 @@
+using System;
+
 namespace Robot
 {
     public class Leg
@@ -5,13 +7,14 @@ namespace Robot
         private ServoBase _coxa;
         private ServoBase _femur;
         private ServoBase _tibia;
-        private double _x;
-        private double _y;
-        private double _z;
+        private double _X;
+        private double _Y;
+        private double _Z;
         private Position _position;
         private Side _side;
         private double _distanceToX;
         private double _distanceToZ;
+        private double _offset;
 
 
         public ServoBase Coxa
@@ -34,17 +37,20 @@ namespace Robot
 
         public double X
         {
-            get { return _x; }
+            get { return _X; }
+            set { _X = value; }
         }
 
         public double Y
         {
-            get { return _y; }
+            get { return _Y; }
+            set { _Y = value; }
         }
 
         public double Z
         {
-            get { return _z; }
+            get { return _Z; }
+            set { _Z = value; }
         }
 
         public Position Position
@@ -69,6 +75,41 @@ namespace Robot
         {
             get { return _distanceToZ; }
             set { _distanceToZ = value; }
+        }
+
+        public double Offset
+        {
+            get { return _offset; }
+            set { _offset = value; }
+        }
+
+        public void CalculateNewPosision(double distance, double directionInRadian)
+        {
+            X = Side == Side.Left ? X + (distance/directionInRadian) : X - (distance/directionInRadian);
+            Z = Z + distance;
+
+            var x = Math.Sqrt(X*X + Z*Z); //X
+            var y = Y; //no roll or pitch 
+ 
+            JointAngeles angeles = IK.CalculateIK(Coxa.Length, Femur.Length, Tibia.Length, x, y);
+            Femur.Angle = angeles.FemurAngle;
+            Tibia.Angle = angeles.TibiaAngle;
+
+            switch (Position)
+            {
+                case Position.Front:
+                    Coxa.Angle = (Math.Atan2(Z, X) * 180 / Math.PI) + Offset;
+                    break;
+                case Position.Middle:
+                    Coxa.Angle = (Math.Atan2(Z, X) * 180 / Math.PI);
+                    break;
+                case Position.Rear:
+                    Coxa.Angle = (Math.Atan2(Z, X) * 180 / Math.PI) - Offset;
+                    break;
+            }
+            
+          
+
         }
     }
 }

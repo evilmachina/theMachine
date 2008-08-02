@@ -1,3 +1,5 @@
+using System;
+
 namespace Robot
 {
     public class ServoBase
@@ -53,7 +55,7 @@ namespace Robot
         
         public double Angle
         {
-            get { return _angle; }
+            get { return Math.Round(_angle,1,MidpointRounding.ToEven); }
             set { _angle = value; }
         }
     }

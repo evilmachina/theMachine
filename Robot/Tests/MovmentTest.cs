@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using NUnit.Framework;
-using TestProj;
 
 namespace Robot.Tests
 {
@@ -27,7 +26,7 @@ namespace Robot.Tests
             double Y = 10.4;
 
            
-            JointAngeles jointAngeles = IK.CalculateIK(coxaLength, femurLength, tibiaLength, X, Y);
+            JointAngeles jointAngeles = IK.CalculateIK_Old(coxaLength, femurLength, tibiaLength, X, Y);
 
             short femurAngleLeft = Convert(90 - jointAngeles.FemurAngle);
             short tibiaAngleLeft = Convert((jointAngeles.TibiaAngle + 90));
@@ -68,7 +67,7 @@ namespace Robot.Tests
             double X = 7;
             double Y = 3;
 
-            JointAngeles jointAngeles = IK.CalculateIK(coxaLength, femurLength, tibiaLength, X, Y);
+            JointAngeles jointAngeles = IK.CalculateIK_Old(coxaLength, femurLength, tibiaLength, X, Y);
 
             short femurAngleLeft = Convert(90 - jointAngeles.FemurAngle);
             short tibiaAngleLeft = Convert((jointAngeles.TibiaAngle + 90));
@@ -108,7 +107,7 @@ namespace Robot.Tests
             double X = 7;
             double Y = 8;
 
-            JointAngeles jointAngeles = IK.CalculateIK(coxaLength, femurLength, tibiaLength, X, Y);
+            JointAngeles jointAngeles = IK.CalculateIK_Old(coxaLength, femurLength, tibiaLength, X, Y);
 
             short femurAngleLeft = Convert(90 - jointAngeles.FemurAngle);
             short tibiaAngleLeft = Convert((jointAngeles.TibiaAngle + 90));

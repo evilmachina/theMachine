@@ -1,3 +1,5 @@
+using System;
+
 namespace Robot
 {
     public class Phoenix  
@@ -43,6 +45,18 @@ namespace Robot
         {
             get { return _rrl; }
             set { _rrl = value; }
+        }
+
+        public void MoveBody(double distance, double direction)
+        {
+            var directionInRadianer = Math.Tan(direction * (Math.PI / 180));
+
+            lfl.CalculateNewPosision(distance, directionInRadianer);
+            rfl.CalculateNewPosision(distance, directionInRadianer);
+            lml.CalculateNewPosision(distance, directionInRadianer);
+            rml.CalculateNewPosision(distance, directionInRadianer);
+            lrl.CalculateNewPosision(distance, directionInRadianer);
+            rrl.CalculateNewPosision(distance, directionInRadianer);
         }
     }
 }
