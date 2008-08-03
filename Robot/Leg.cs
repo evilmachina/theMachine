@@ -82,14 +82,18 @@ namespace Robot
             get { return _offset; }
             set { _offset = value; }
         }
-
         public void CalculateNewPosision(double distance, double directionInRadian)
+        {
+            CalculateNewPosision(distance, directionInRadian, 0);
+        }
+
+        public void CalculateNewPosision(double distance, double directionInRadian, double yDistance)
         {
             X = Side == Side.Left ? X + (distance/directionInRadian) : X - (distance/directionInRadian);
             Z = Z + distance;
 
             var x = Math.Sqrt(X*X + Z*Z); //X
-            var y = Y; //no roll or pitch 
+            var y = Y - yDistance; //no roll or pitch 
  
             JointAngeles angeles = IK.CalculateIK(Coxa.Length, Femur.Length, Tibia.Length, x, y);
             Femur.Angle = angeles.FemurAngle;

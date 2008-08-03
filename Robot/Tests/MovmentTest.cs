@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using NUnit.Framework;
 
 namespace Robot.Tests
@@ -327,6 +328,50 @@ namespace Robot.Tests
 
             var instructionPacket = new InstructionPacketSyncMovment(sender, movments);
             instructionPacket.Send();
+
+            ((CommunicationObject)sender).Dispose();
+        }
+
+        [Test, Ignore("Ned to be connected to robot")]
+        public void MoveBody5cmBack()
+        {
+            ISender sender = new CommunicationObject();
+            Phoenix phoenix = RobotFactory.CreatePhoenix();
+            phoenix.MoveBody(-5, 90);
+
+            var movments = phoenix.GetMovements();
+
+
+            var instructionPacket = new InstructionPacketSyncMovment(sender, movments);
+            instructionPacket.Send();
+
+            ((CommunicationObject)sender).Dispose();
+        }
+
+        [Test, Ignore("Ned to be connected to robot")]
+        public void CanWake()
+        {
+            ISender sender = new CommunicationObject();
+            Phoenix phoenix = RobotFactory.CreatePhoenix();
+            var startmovments = phoenix.GetMovements();
+
+
+           // new InstructionPacketSyncMovment(sender, startmovments).Send();
+            Thread.Sleep(500);
+
+            var distance = 10;
+            RippelGate6 gate6 = phoenix.CreateRippelGate6(2, 90, distance);
+
+            for (int i = 0; i < 10; i++)
+            {
+                foreach (var movments in gate6.Positions)
+                {
+                    var instructionPacket = new InstructionPacketSyncMovment(sender, movments.ToArray());
+                    instructionPacket.Send();
+                    Thread.Sleep(600);
+                }
+            }
+            
 
             ((CommunicationObject)sender).Dispose();
         }
