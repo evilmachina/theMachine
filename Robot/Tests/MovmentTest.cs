@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using NUnit.Framework;
 
@@ -16,7 +17,7 @@ namespace Robot.Tests
             return (short) ((0x3ff/(double) 300)*(150 - d));
         }
 
-        [Test]
+        [Test,Ignore("Ned to be connected to robot")]
         public void Pushups()
         {
             ISender sender = new CommunicationObject();
@@ -58,8 +59,7 @@ namespace Robot.Tests
             ((CommunicationObject) sender).Dispose();
         }
 
-
-        [Test]
+        [Test, Ignore("Ned to be connected to robot")]
         public void Pushups_down()
         {
             ISender sender = new CommunicationObject();
@@ -99,7 +99,7 @@ namespace Robot.Tests
             ((CommunicationObject) sender).Dispose();
         }
 
-        [Test]
+        [Test, Ignore("Ned to be connected to robot")]
         public void Pushups_upp()
         {
             ISender sender = new CommunicationObject();
@@ -137,6 +137,198 @@ namespace Robot.Tests
             instructionPacket.Send();
 
             ((CommunicationObject) sender).Dispose();
+        }
+
+        [Test]
+        public void CanGetMovementFromLeftTibiaZeroOffset()
+        {
+            Tibia tibia  = new Tibia(10.4, 0, 5, 0, 0, Side.Left);
+            Movment movment = tibia.GetMovment();
+
+            List<byte> movmentInBytes = (List<byte>) movment.ToByte();
+            Assert.AreEqual(5, movmentInBytes[0]); //ServoId
+            Assert.AreEqual(0x1ff, BitConverter.ToInt16(movmentInBytes.ToArray(), 1));
+            Assert.AreEqual(0x050, BitConverter.ToInt16(movmentInBytes.ToArray(), 3));
+        }
+
+
+        [Test]
+        public void CanGetMovementForLeftTibiaWithOffset()
+        {
+
+            Tibia tibia = new Tibia(10.4, 20, 5, 0, 0, Side.Left);
+            Movment movment = tibia.GetMovment();
+
+            List<byte> movmentInBytes = (List<byte>)movment.ToByte();
+            Assert.AreEqual(5, movmentInBytes[0]); //ServoId
+            Assert.AreEqual(0x1BB, BitConverter.ToInt16(movmentInBytes.ToArray(), 1));
+            Assert.AreEqual(0x050, BitConverter.ToInt16(movmentInBytes.ToArray(), 3));
+        }
+
+        [Test]
+        public void CanGetMovementForRightTibiaWithOffset()
+        {
+            Tibia tibia = new Tibia(10.4, 20, 5, 0, 0, Side.Right);
+            Movment movment = tibia.GetMovment();
+
+            List<byte> movmentInBytes = (List<byte>)movment.ToByte();
+            Assert.AreEqual(5, movmentInBytes[0]); //ServoId
+            Assert.AreEqual(0x243, BitConverter.ToInt16(movmentInBytes.ToArray(), 1));
+            Assert.AreEqual(0x050, BitConverter.ToInt16(movmentInBytes.ToArray(), 3));
+        }
+
+
+        [Test]
+        public void CanGetMovementForLeftFemurWithZeroOffset()
+        {
+
+            Femur femur = new Femur(10.4, 0, 5, 0, 0, Side.Left);
+            Movment movment = femur.GetMovment();
+
+            List<byte> movmentInBytes = (List<byte>)movment.ToByte();
+            Assert.AreEqual(5, movmentInBytes[0]); //ServoId
+            Assert.AreEqual(0x1FF, BitConverter.ToInt16(movmentInBytes.ToArray(), 1));
+            Assert.AreEqual(0x050, BitConverter.ToInt16(movmentInBytes.ToArray(), 3));
+        }
+
+
+
+        [Test]
+        public void CanGetMovementForLeftFemurWithOffset()
+        {
+            Femur femur = new Femur(10.4, 20, 5, 0, 0, Side.Left);
+            Movment movment = femur.GetMovment();
+
+            List<byte> movmentInBytes = (List<byte>)movment.ToByte();
+            Assert.AreEqual(5, movmentInBytes[0]); //ServoId
+            Assert.AreEqual(0x1BB, BitConverter.ToInt16(movmentInBytes.ToArray(), 1));
+            Assert.AreEqual(0x050, BitConverter.ToInt16(movmentInBytes.ToArray(), 3));
+        }
+
+        [Test]
+        public void CanGetMovementForRightFemurWithOffset()
+        {
+            Femur femur = new Femur(10.4, 20, 5, 0, 0, Side.Right);
+            Movment movment = femur.GetMovment();
+
+            List<byte> movmentInBytes = (List<byte>)movment.ToByte();
+            Assert.AreEqual(5, movmentInBytes[0]); //ServoId
+            Assert.AreEqual(0x243, BitConverter.ToInt16(movmentInBytes.ToArray(), 1));
+            Assert.AreEqual(0x050, BitConverter.ToInt16(movmentInBytes.ToArray(), 3));
+        }
+
+
+        
+        [Test]
+        public void CanGetMovementForLeftCoxaWithZeroOffset()
+        {
+
+            Coxa coxa = new Coxa(10.4, 0, 5, 0, 0, Side.Left);
+            Movment movment = coxa.GetMovment();
+
+            List<byte> movmentInBytes = (List<byte>)movment.ToByte();
+            Assert.AreEqual(5, movmentInBytes[0]); //ServoId
+            Assert.AreEqual(0x1FF, BitConverter.ToInt16(movmentInBytes.ToArray(), 1));
+            Assert.AreEqual(0x050, BitConverter.ToInt16(movmentInBytes.ToArray(), 3));
+        }
+
+        [Test]
+        public void CanGetMovementForLeftCoxaWithOffset()
+        {
+            Coxa coxa = new Coxa(10.4, 20, 5, 0, 0, Side.Left);
+            Movment movment = coxa.GetMovment();
+
+            List<byte> movmentInBytes = (List<byte>)movment.ToByte();
+            Assert.AreEqual(5, movmentInBytes[0]); //ServoId
+            Assert.AreEqual(0x1BB, BitConverter.ToInt16(movmentInBytes.ToArray(), 1));
+            Assert.AreEqual(0x050, BitConverter.ToInt16(movmentInBytes.ToArray(), 3));
+        }
+
+        [Test]
+        public void CanGetMovementForRightCoxaWithOffset()
+        {
+            Coxa coxa = new Coxa(10.4, 20, 5, 0, 0, Side.Right);
+            Movment movment = coxa.GetMovment();
+
+            List<byte> movmentInBytes = (List<byte>)movment.ToByte();
+            Assert.AreEqual(5, movmentInBytes[0]); //ServoId
+            Assert.AreEqual(0x243, BitConverter.ToInt16(movmentInBytes.ToArray(), 1));
+            Assert.AreEqual(0x050, BitConverter.ToInt16(movmentInBytes.ToArray(), 3));
+        }
+
+        [Test]
+        public void CanGetMovmentFromLeg()
+        {
+            Leg leg = new Leg
+            {
+                Side = Side.Left,
+                Position = Position.Front,
+                Offset = 60,
+                DistanceToX = 4.3,
+                DistanceToZ = 8.2,
+                X = 5.7,
+                Y = 10.4,
+                Z = -9.8726896031426,
+                Coxa = new Coxa(3.8, 0, 1, 0, 0, Side.Left),
+                Femur = new Femur(7.6, 0, 3, 0, 0, Side.Left),
+                Tibia = new Tibia(10.4, 20, 5, 0, 0, Side.Left)
+            };
+
+            leg.CalculateNewPosision(0,1);
+
+            Movment[] movement = leg.GetMovements();
+
+            List<byte> movmentInBytes;
+
+            //coxa
+            movmentInBytes = (List<byte>)movement[0].ToByte();
+            Assert.AreEqual(1, movmentInBytes[0]); //ServoId
+            Assert.AreEqual(0x1FF, BitConverter.ToInt16(movmentInBytes.ToArray(), 1));
+            Assert.AreEqual(0x050, BitConverter.ToInt16(movmentInBytes.ToArray(), 3));
+
+            //femur
+            movmentInBytes = (List<byte>)movement[1].ToByte();
+            Assert.AreEqual(3, movmentInBytes[0]); //ServoId
+            Assert.AreEqual(0x1FF, BitConverter.ToInt16(movmentInBytes.ToArray(), 1));
+            Assert.AreEqual(0x050, BitConverter.ToInt16(movmentInBytes.ToArray(), 3));
+
+            //Coxa
+            movmentInBytes = (List<byte>)movement[2].ToByte();
+            Assert.AreEqual(5, movmentInBytes[0]); //ServoId
+            Assert.AreEqual(0x1BB, BitConverter.ToInt16(movmentInBytes.ToArray(), 1));
+            Assert.AreEqual(0x050, BitConverter.ToInt16(movmentInBytes.ToArray(), 3));
+        }
+
+        [Test, Ignore("Ned to be connected to robot")]
+        public void MoveBodyToStartPosition()
+         {
+            ISender sender = new CommunicationObject();
+            Phoenix phoenix = RobotFactory.CreatePhoenix();
+
+
+            var movments = phoenix.GetMovements();
+
+
+             var instructionPacket = new InstructionPacketSyncMovment(sender, movments);
+             instructionPacket.Send();
+
+             ((CommunicationObject)sender).Dispose();
+         }
+
+        [Test, Ignore("Ned to be connected to robot")]
+        public void MoveBody5cmFovard()
+        {
+            ISender sender = new CommunicationObject();
+            Phoenix phoenix = RobotFactory.CreatePhoenix();
+            phoenix.MoveBody(5,90);
+
+            var movments = phoenix.GetMovements();
+
+
+            var instructionPacket = new InstructionPacketSyncMovment(sender, movments);
+            instructionPacket.Send();
+
+            ((CommunicationObject)sender).Dispose();
         }
     }
 }

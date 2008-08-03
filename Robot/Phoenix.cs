@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Robot
 {
@@ -57,6 +58,19 @@ namespace Robot
             rml.CalculateNewPosision(distance, directionInRadianer);
             lrl.CalculateNewPosision(distance, directionInRadianer);
             rrl.CalculateNewPosision(distance, directionInRadianer);
+        }
+
+        public Movment[] GetMovements()
+        {
+            var movements = new List<Movment>();
+            movements.AddRange(lfl.GetMovements());
+            movements.AddRange(rfl.GetMovements());
+            movements.AddRange(lml.GetMovements());
+            movements.AddRange(rml.GetMovements());
+            movements.AddRange(lrl.GetMovements());
+            movements.AddRange(rrl.GetMovements());
+
+            return movements.ToArray();
         }
     }
 }

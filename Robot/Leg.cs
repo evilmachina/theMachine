@@ -111,5 +111,15 @@ namespace Robot
           
 
         }
+
+        public Movment[] GetMovements()
+        {
+            var movements = new Movment[3];
+            movements[0] = Coxa.GetMovment();
+            movements[1] = Femur.GetMovment();
+            movements[2] = Tibia.GetMovment();
+
+            return movements;
+        }
     }
 }

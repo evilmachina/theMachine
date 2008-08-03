@@ -15,10 +15,11 @@ namespace Robot
                                       lrl = createLeg(Side.Left, Position.Rear, 60, 4.3, 8.2, 13, 15, 17, 5.7, 10.4, 9.8726896031426),
                                       rrl = createLeg(Side.Right, Position.Rear, 60, 4.3, 8.2, 14, 16, 18, 5.7, 10.4, 9.8726896031426)
                                   };
+           phoenix.MoveBody(0,90);// calculates start posisions for angles
             return phoenix;
         }
 
-        private static Leg createLeg(Side side, Position position, double legOffset, double distanceToX, double distanceToZ, int coxaId, int femurId, int tibiaId, double X, double Y, double Z)
+        private static Leg createLeg(Side side, Position position, double legOffset, double distanceToX, double distanceToZ, short coxaId, short femurId, short tibiaId, double X, double Y, double Z)
         {
             Leg leg = new Leg
                           {
@@ -32,7 +33,7 @@ namespace Robot
                               Z = Z,
                               Coxa = new Coxa(3.8, 0, coxaId, 0, 0, side),
                               Femur = new Femur(7.6, 0, femurId, 0, 0, side),
-                              Tibia = new Tibia(10.4, 0, tibiaId, 0, 0, side)
+                              Tibia = new Tibia(10.4, -20, tibiaId, 0, 0, side)
                           };
 
             return leg;

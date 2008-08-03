@@ -2,18 +2,18 @@ using System;
 
 namespace Robot
 {
-    public class ServoBase
+    public abstract class ServoBase
     {
         private readonly double _length;
         private readonly double _offset;
-        private readonly int _servoId;
+        private readonly short _servoId;
         private readonly double _minAngle;
         private readonly double _maxAngle;
         private readonly Side _side;
 
         private double _angle;
 
-        public ServoBase(double length, double offset, int servoId, double minAngle, double maxAngle, Side side)
+        public ServoBase(double length, double offset, short servoId, double minAngle, double maxAngle, Side side)
         {
             _length = length;
             _offset = offset;
@@ -57,6 +57,13 @@ namespace Robot
         {
             get { return Math.Round(_angle,1,MidpointRounding.ToEven); }
             set { _angle = value; }
+        }
+
+        public abstract Movment GetMovment();
+
+        protected static short Convert(double d)
+        {
+            return (short)((0x3ff / (double)300) * (150 + d));
         }
     }
 }
