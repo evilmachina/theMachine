@@ -300,6 +300,9 @@ namespace Robot.Tests
             Assert.AreEqual(0x050, BitConverter.ToInt16(movmentInBytes.ToArray(), 3));
         }
 
+
+        
+
         [Test, Ignore("Ned to be connected to robot")]
         public void MoveBodyToStartPosition()
          {

@@ -55,14 +55,14 @@ namespace Robot
 
         public void MoveBody(double distance, double direction, double yDistance)
         {
-            var directionInRadianer = Math.Tan(direction * (Math.PI / 180));
+           
 
-            lfl.CalculateNewPosision(distance, directionInRadianer, yDistance);
-            rfl.CalculateNewPosision(distance, directionInRadianer, yDistance);
-            lml.CalculateNewPosision(distance, directionInRadianer, yDistance);
-            rml.CalculateNewPosision(distance, directionInRadianer, yDistance);
-            lrl.CalculateNewPosision(distance, directionInRadianer, yDistance);
-            rrl.CalculateNewPosision(distance, directionInRadianer, yDistance);
+            lfl.CalculateNewPosision(distance, direction, yDistance);
+            rfl.CalculateNewPosision(distance, direction, yDistance);
+            lml.CalculateNewPosision(distance, direction, yDistance);
+            rml.CalculateNewPosision(distance, direction, yDistance);
+            lrl.CalculateNewPosision(distance, direction, yDistance);
+            rrl.CalculateNewPosision(distance, direction, yDistance);
         }
 
         public Movment[] GetMovements()

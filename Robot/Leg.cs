@@ -87,10 +87,22 @@ namespace Robot
             CalculateNewPosision(distance, directionInRadian, 0);
         }
 
-        public void CalculateNewPosision(double distance, double directionInRadian, double yDistance)
+        public void CalculateNewPosision(double distance, double direction, double yDistance)
         {
-            X = Side == Side.Left ? X + (distance/directionInRadian) : X - (distance/directionInRadian);
-            Z = Z + distance;
+            var directionInRadians = Math.Tan(direction * (Math.PI / 180));
+
+            if (direction > 45 || direction < -45)
+            {
+                X = Side == Side.Left ? X + (distance / directionInRadians) : X - (distance / directionInRadians);
+                Z = Z + distance;
+            }
+            else 
+            {
+                X = Side == Side.Left ? X + distance  : X - distance;
+                Z = Z + distance * directionInRadians;
+            }
+
+           
 
             var x = Math.Sqrt(X*X + Z*Z); //X
             var y = Y - yDistance; //no roll or pitch 
