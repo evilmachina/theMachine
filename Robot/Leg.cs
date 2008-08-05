@@ -12,8 +12,6 @@ namespace Robot
         private double _Z;
         private Position _position;
         private Side _side;
-        private double _distanceToX;
-        private double _distanceToZ;
         private double _offset;
 
 
@@ -65,23 +63,12 @@ namespace Robot
             set { _side = value; }
         }
 
-        public double DistanceToX
-        {
-            get { return _distanceToX; }
-            set { _distanceToX = value; }
-        }
-
-        public double DistanceToZ
-        {
-            get { return _distanceToZ; }
-            set { _distanceToZ = value; }
-        }
-
         public double Offset
         {
             get { return _offset; }
             set { _offset = value; }
         }
+
         public void CalculateNewPosision(double distance, double directionInRadian)
         {
             CalculateNewPosision(distance, directionInRadian, 0);

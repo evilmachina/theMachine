@@ -12,6 +12,7 @@ namespace Robot
         private readonly Side _side;
 
         private double _angle;
+        private double _oldAngle;
 
         public ServoBase(double length, double offset, short servoId, double minAngle, double maxAngle, Side side)
         {
@@ -56,7 +57,11 @@ namespace Robot
         public double Angle
         {
             get { return Math.Round(_angle,1,MidpointRounding.ToEven); }
-            set { _angle = value; }
+            set
+            {
+                _oldAngle = _angle;
+                _angle = value;
+            }
         }
 
         public abstract Movment GetMovment();

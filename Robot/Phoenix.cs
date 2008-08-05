@@ -78,29 +78,21 @@ namespace Robot
             return movements.ToArray();
         }
 
-        public RippelGate6 CreateRippelGate6(double stepValue, double direction, int distance)
+        public RippelGate6 CreateRippelGate6(double stepValue, double direction)
         {
-            /* 
-             rflStep = 6 ‘Right front leg
-             rmlStep = 2 ‘Right middle leg
-             rrlStep = 4 ‘Right rear leg
-             lflStep = 3 ‘Left front leg
-             lmlStep = 5 ‘Left middle leg
-             lrlStep = 1 ‘Left rear leg
-             * */
 
             RippelGate6 rippelGate6 = new RippelGate6();
-            MoveBody(-2, 90);
+            MoveBody(-stepValue * 2, direction);
             rippelGate6.AddPosision(this);
-            MoveBody(1, 90);
+            MoveBody(stepValue, direction);
             rippelGate6.AddPosision(this);
-            MoveBody(1, 90);
+            MoveBody(stepValue, direction);
             rippelGate6.AddPosision(this);
-            MoveBody(1, 90);
+            MoveBody(stepValue, direction);
             rippelGate6.AddPosision(this);
-            MoveBody(1, 90);
+            MoveBody(stepValue, direction);
             rippelGate6.AddPosision(this);
-            MoveBody(-2, 90, 4);
+            MoveBody(-stepValue * 2, direction, 8);
             rippelGate6.AddPosision(this);
 
             return rippelGate6;

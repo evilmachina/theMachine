@@ -20,8 +20,14 @@ namespace Robot
                     positon = Convert(Angle + Offset);
                     break;
             }
+            var speed = CalculateSpead();
 
             return new Movment((byte)ServoId, positon, 0x050);
+        }
+
+        private short CalculateSpead()
+        {
+            return 0x050;
         }
     }
 }

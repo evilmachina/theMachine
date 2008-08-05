@@ -265,8 +265,6 @@ namespace Robot.Tests
                 Side = Side.Left,
                 Position = Position.Front,
                 Offset = 60,
-                DistanceToX = 4.3,
-                DistanceToZ = 8.2,
                 X = 5.7,
                 Y = 10.4,
                 Z = -9.8726896031426,
@@ -352,7 +350,7 @@ namespace Robot.Tests
         }
 
         [Test, Ignore("Ned to be connected to robot")]
-        public void CanWake()
+        public void CanWakeForward()
         {
             ISender sender = new CommunicationObject();
             Phoenix phoenix = RobotFactory.CreatePhoenix();
@@ -363,7 +361,7 @@ namespace Robot.Tests
             Thread.Sleep(500);
 
             var distance = 10;
-            RippelGate6 gate6 = phoenix.CreateRippelGate6(2, 90, distance);
+            RippelGate6 gate6 = phoenix.CreateRippelGate6(1, 90);
 
             for (int i = 0; i < 10; i++)
             {
@@ -375,6 +373,63 @@ namespace Robot.Tests
                 }
             }
             
+
+            ((CommunicationObject)sender).Dispose();
+        }
+
+        [Test, Ignore("Ned to be connected to robot")]
+        public void CanWakeFastForward()
+        {
+            ISender sender = new CommunicationObject();
+            Phoenix phoenix = RobotFactory.CreatePhoenix();
+            var startmovments = phoenix.GetMovements();
+
+
+            // new InstructionPacketSyncMovment(sender, startmovments).Send();
+            Thread.Sleep(700);
+
+            var distance = 10;
+            RippelGate6 gate6 = phoenix.CreateRippelGate6(2, 90);
+
+            for (int i = 0; i < 10; i++)
+            {
+                foreach (var movments in gate6.Positions)
+                {
+                    var instructionPacket = new InstructionPacketSyncMovment(sender, movments.ToArray());
+                    instructionPacket.Send();
+                    Thread.Sleep(600);
+                }
+            }
+
+
+            ((CommunicationObject)sender).Dispose();
+        }
+
+
+        [Test, Ignore("Ned to be connected to robot")]
+        public void CanWakeSideways()
+        {
+            ISender sender = new CommunicationObject();
+            Phoenix phoenix = RobotFactory.CreatePhoenix();
+            var startmovments = phoenix.GetMovements();
+
+
+            // new InstructionPacketSyncMovment(sender, startmovments).Send();
+            Thread.Sleep(500);
+
+            var distance = 10;
+            RippelGate6 gate6 = phoenix.CreateRippelGate6(1, 0);
+
+            for (int i = 0; i < 10; i++)
+            {
+                foreach (var movments in gate6.Positions)
+                {
+                    var instructionPacket = new InstructionPacketSyncMovment(sender, movments.ToArray());
+                    instructionPacket.Send();
+                    Thread.Sleep(600);
+                }
+            }
+
 
             ((CommunicationObject)sender).Dispose();
         }
