@@ -66,5 +66,10 @@ namespace Robot
         {
             return x - length;
         }
+
+        public static double CalculateIKOneJoint(double X, double Z)
+        {
+            return (Math.Atan2(Z, X) * 180 / Math.PI);
+        }
     }
 }

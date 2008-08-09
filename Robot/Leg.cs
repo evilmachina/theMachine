@@ -69,52 +69,6 @@ namespace Robot
             set { _offset = value; }
         }
 
-        public void CalculateNewPosision(double distance, double directionInRadian)
-        {
-            CalculateNewPosision(distance, directionInRadian, 0);
-        }
-
-        public void CalculateNewPosision(double distance, double direction, double yDistance)
-        {
-            var directionInRadians = Math.Tan(direction * (Math.PI / 180));
-
-            if (direction > 45 || direction < -45)
-            {
-                X = Side == Side.Left ? X + (distance / directionInRadians) : X - (distance / directionInRadians);
-                Z = Z + distance;
-            }
-            else 
-            {
-                X = Side == Side.Left ? X + distance  : X - distance;
-                Z = Z + distance * directionInRadians;
-            }
-
-           
-
-            var x = Math.Sqrt(X*X + Z*Z); //X
-            var y = Y - yDistance; //no roll or pitch 
- 
-            JointAngeles angeles = IK.CalculateIK(Coxa.Length, Femur.Length, Tibia.Length, x, y);
-            Femur.Angle = angeles.FemurAngle;
-            Tibia.Angle = angeles.TibiaAngle;
-
-            switch (Position)
-            {
-                case Position.Front:
-                    Coxa.Angle = (Math.Atan2(Z, X) * 180 / Math.PI) + Offset;
-                    break;
-                case Position.Middle:
-                    Coxa.Angle = (Math.Atan2(Z, X) * 180 / Math.PI);
-                    break;
-                case Position.Rear:
-                    Coxa.Angle = (Math.Atan2(Z, X) * 180 / Math.PI) - Offset;
-                    break;
-            }
-            
-          
-
-        }
-
         public Movment[] GetMovements()
         {
             var movements = new Movment[3];
@@ -123,6 +77,64 @@ namespace Robot
             movements[2] = Tibia.GetMovment();
 
             return movements;
+        }
+
+        public static void CalculateNewPosition(Leg leg, double distance, double directionInRadian)
+        {
+            CalculateNewPosition(leg, distance, directionInRadian, 0);
+        }
+
+        public static void CalculateNewPosition(Leg leg, double distance, double direction, double yDistance)
+        {
+            double newX;
+            double newZ;
+
+            CalculateXandZ(direction, distance,leg.Side, leg.X, leg.Z, out newX, out newZ);
+            leg.SetXYZ(newX, newZ, leg.Y - yDistance);
+        }
+
+        public void SetXYZ(double newX, double newZ, double newY)
+        {
+            X = newX;
+            Z = newZ;
+            Y = newY;
+
+            double x = Math.Sqrt(X * X + Z * Z);
+            double y = Y;
+
+            JointAngeles angeles = IK.CalculateIK(Coxa.Length, Femur.Length, Tibia.Length, x, y);
+            Femur.Angle = angeles.FemurAngle;
+            Tibia.Angle = angeles.TibiaAngle;
+
+            switch (Position)
+            {
+                case Position.Front:
+                    Coxa.Angle = IK.CalculateIKOneJoint(X, Z) + Offset;
+                    break;
+                case Position.Middle:
+                    Coxa.Angle = IK.CalculateIKOneJoint(X, Z);
+                    break;
+                case Position.Rear:
+                    Coxa.Angle = IK.CalculateIKOneJoint(X, Z) - Offset;
+                    break;
+            }
+        }
+
+        public static void CalculateXandZ(double direction, double distance,Side side, double X, double Z, out double newX, out double newZ)
+        {
+            var directionInRadians = Math.Tan(direction * (Math.PI / 180));
+         
+
+            if (direction > 45 || direction < -45)
+            {
+                newX = side == Side.Left ? X + (distance / directionInRadians) : X - (distance / directionInRadians);
+                newZ = Z + distance;
+            }
+            else
+            {
+                newX = side == Side.Left ? X + distance : X - distance;
+                newZ = Z + distance * directionInRadians;
+            }
         }
     }
 }

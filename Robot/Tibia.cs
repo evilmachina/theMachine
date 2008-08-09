@@ -21,7 +21,7 @@ namespace Robot
             }
 
 
-            return new Movment((byte) ServoId, positon, 0x050);
+            return new Movment((byte) ServoId, positon, CalculateSpeed());
         }
     }
 }

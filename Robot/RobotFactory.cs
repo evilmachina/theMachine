@@ -6,15 +6,15 @@ namespace Robot
     {
         public static Phoenix CreatePhoenix()
         {
-            var Z = 5;
+            var Y = 5;
             Phoenix phoenix = new Phoenix
                                   {
-                                      lfl = createLeg(Side.Left, Position.Front, 60, 1, 3, 5, 5.7, Z, -9.8726896031426),
-                                      rfl = createLeg(Side.Right, Position.Front, 60, 2, 4, 6, 5.7, Z, -9.8726896031426),
-                                      lml = createLeg(Side.Left, Position.Middle, 0, 7, 9, 11, 11.4, Z, 0.0),
-                                      rml = createLeg(Side.Right, Position.Middle, 0, 8, 10, 12, 11.4, Z, 0.0),
-                                      lrl = createLeg(Side.Left, Position.Rear, 60, 13, 15, 17, 5.7, Z, 9.8726896031426),
-                                      rrl = createLeg(Side.Right, Position.Rear, 60, 14, 16, 18, 5.7, Z, 9.8726896031426)
+                                      lfl = createLeg(Side.Left, Position.Front, 60, 1, 3, 5, 5.7, Y, -9.8726896031426),
+                                      rfl = createLeg(Side.Right, Position.Front, 60, 2, 4, 6, 5.7, Y, -9.8726896031426),
+                                      lml = createLeg(Side.Left, Position.Middle, 0, 7, 9, 11, 11.4, Y, 0.0),
+                                      rml = createLeg(Side.Right, Position.Middle, 0, 8, 10, 12, 11.4, Y, 0.0),
+                                      lrl = createLeg(Side.Left, Position.Rear, 60, 13, 15, 17, 5.7, Y, 9.8726896031426),
+                                      rrl = createLeg(Side.Right, Position.Rear, 60, 14, 16, 18, 5.7, Y, 9.8726896031426)
                                   };
            phoenix.MoveBody(0,90);// calculates start posisions for angles
             return phoenix;
@@ -39,5 +39,19 @@ namespace Robot
             
         }
 
+        public static HomePosition CreateHomePosition()
+        {
+            var Y = 5;
+            HomePosition homePosition = new HomePosition
+                                            {
+                                                lfl = new LegPosition(5.7, Y, -9.8726896031426),
+                                                rfl = new LegPosition(5.7, Y, -9.8726896031426),
+                                                lml = new LegPosition(11.4, Y, 0.0),
+                                                rml = new LegPosition(11.4, Y, 0.0),
+                                                lrl = new LegPosition(5.7, Y, 9.8726896031426),
+                                                rrl = new LegPosition(5.7, Y, 9.8726896031426)
+                                            };
+            return homePosition;
+        }
     }
 }

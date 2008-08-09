@@ -55,14 +55,12 @@ namespace Robot
 
         public void MoveBody(double distance, double direction, double yDistance)
         {
-           
-
-            lfl.CalculateNewPosision(distance, direction, yDistance);
-            rfl.CalculateNewPosision(distance, direction, yDistance);
-            lml.CalculateNewPosision(distance, direction, yDistance);
-            rml.CalculateNewPosision(distance, direction, yDistance);
-            lrl.CalculateNewPosision(distance, direction, yDistance);
-            rrl.CalculateNewPosision(distance, direction, yDistance);
+            Leg.CalculateNewPosition(lfl, distance, direction, yDistance);
+            Leg.CalculateNewPosition(rfl, distance, direction, yDistance);
+            Leg.CalculateNewPosition(lml, distance, direction, yDistance);
+            Leg.CalculateNewPosition(rml, distance, direction, yDistance);
+            Leg.CalculateNewPosition(lrl, distance, direction, yDistance);
+            Leg.CalculateNewPosition(rrl, distance, direction, yDistance);
         }
 
         public Movment[] GetMovements()
@@ -77,27 +75,5 @@ namespace Robot
 
             return movements.ToArray();
         }
-
-        public RippelGate6 CreateRippelGate6(double stepValue, double direction)
-        {
-
-            RippelGate6 rippelGate6 = new RippelGate6();
-            MoveBody(-stepValue * 2, direction);
-            rippelGate6.AddPosision(this);
-            MoveBody(stepValue, direction);
-            rippelGate6.AddPosision(this);
-            MoveBody(stepValue, direction);
-            rippelGate6.AddPosision(this);
-            MoveBody(stepValue, direction);
-            rippelGate6.AddPosision(this);
-            MoveBody(stepValue, direction);
-            rippelGate6.AddPosision(this);
-            MoveBody(-stepValue * 2, direction, 8);
-            rippelGate6.AddPosision(this);
-
-            return rippelGate6;
-        }
-        
-
     }
 }

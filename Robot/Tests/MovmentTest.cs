@@ -273,7 +273,7 @@ namespace Robot.Tests
                 Tibia = new Tibia(10.4, 20, 5, 0, 0, Side.Left)
             };
 
-            leg.CalculateNewPosision(0,1);
+            Leg.CalculateNewPosition(leg, 0,1);
 
             Movment[] movement = leg.GetMovements();
 
@@ -358,10 +358,10 @@ namespace Robot.Tests
 
 
            // new InstructionPacketSyncMovment(sender, startmovments).Send();
-            Thread.Sleep(500);
+           // Thread.Sleep(10000);
 
             var distance = 10;
-            RippelGate6 gate6 = phoenix.CreateRippelGate6(1, 90);
+            RippelGate6 gate6 = RippelGate6.CreateRippelGate6(phoenix, 1, 90);
 
             for (int i = 0; i < 10; i++)
             {
@@ -369,7 +369,7 @@ namespace Robot.Tests
                 {
                     var instructionPacket = new InstructionPacketSyncMovment(sender, movments.ToArray());
                     instructionPacket.Send();
-                    Thread.Sleep(600);
+                    Thread.Sleep(1000);
                 }
             }
             
@@ -389,7 +389,7 @@ namespace Robot.Tests
             Thread.Sleep(700);
 
             var distance = 10;
-            RippelGate6 gate6 = phoenix.CreateRippelGate6(2, 90);
+            RippelGate6 gate6 = RippelGate6.CreateRippelGate6(phoenix, 2, 90);
 
             for (int i = 0; i < 10; i++)
             {
@@ -418,7 +418,7 @@ namespace Robot.Tests
             Thread.Sleep(500);
 
             var distance = 10;
-            RippelGate6 gate6 = phoenix.CreateRippelGate6(1, 0);
+            RippelGate6 gate6 = RippelGate6.CreateRippelGate6(phoenix, 1, 0);
 
             for (int i = 0; i < 10; i++)
             {
@@ -433,5 +433,50 @@ namespace Robot.Tests
 
             ((CommunicationObject)sender).Dispose();
         }
+
+         [Test, Ignore("Ned to be connected to robot")]
+        public void CanCalculateRippelGate6()
+         {
+             ISender sender = new CommunicationObject();
+             HomePosition homePosition = RobotFactory.CreateHomePosition();
+             Phoenix phoenix = RobotFactory.CreatePhoenix();
+             
+             RippelGate6 rippelGate6 = new RippelGate6(phoenix, homePosition);
+             for (int i = 0; i < 20; i++)
+             {
+                 double direction = 90;
+                 double stepValue = 2;
+                 ServoBase.TimeBox = 1;
+                 new InstructionPacketSyncMovment(sender, rippelGate6.NextSequence(direction,stepValue)).Send();
+                 Thread.Sleep((int) ServoBase.TimeBox * 1000);
+             }
+             for (int i = 0; i < 20; i++)
+             {
+                 double direction = 0;
+                 double stepValue = 2;
+                 ServoBase.TimeBox = 1;
+                 new InstructionPacketSyncMovment(sender, rippelGate6.NextSequence(direction, stepValue)).Send();
+                 Thread.Sleep((int)ServoBase.TimeBox * 1000);
+             }
+             for (int i = 0; i < 20; i++)
+             {
+                 double direction = -45;
+                 double stepValue = 1;
+                 ServoBase.TimeBox = 1;
+                 new InstructionPacketSyncMovment(sender, rippelGate6.NextSequence(direction, stepValue)).Send();
+                 Thread.Sleep((int)ServoBase.TimeBox * 1000);
+             }
+             for (int i = 0; i < 20; i++)
+             {
+                 double direction = 135;
+                 double stepValue = 2;
+                 ServoBase.TimeBox = 1;
+                 new InstructionPacketSyncMovment(sender, rippelGate6.NextSequence(direction, stepValue)).Send();
+                 Thread.Sleep((int)ServoBase.TimeBox * 1000);
+             }
+
+
+             ((CommunicationObject)sender).Dispose();
+         }
     }
 }

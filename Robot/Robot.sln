@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot", "Robot.csproj", "{DEE63384-EA96-44D5-9CF8-B3DDE3990D4D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI", "..\GUI\GUI.csproj", "{DDD0DADC-CF7F-4FF7-A7CE-8651F84DC808}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -17,6 +19,10 @@ Global
 		{DEE63384-EA96-44D5-9CF8-B3DDE3990D4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DEE63384-EA96-44D5-9CF8-B3DDE3990D4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DEE63384-EA96-44D5-9CF8-B3DDE3990D4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDD0DADC-CF7F-4FF7-A7CE-8651F84DC808}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDD0DADC-CF7F-4FF7-A7CE-8651F84DC808}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDD0DADC-CF7F-4FF7-A7CE-8651F84DC808}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDD0DADC-CF7F-4FF7-A7CE-8651F84DC808}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
