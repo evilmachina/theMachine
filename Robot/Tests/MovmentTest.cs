@@ -260,7 +260,7 @@ namespace Robot.Tests
         [Test]
         public void CanGetMovmentFromLeg()
         {
-            Leg leg = new Leg
+            Leg leg = new Leg(1,1)
             {
                 Side = Side.Left,
                 Position = Position.Front,

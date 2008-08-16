@@ -21,6 +21,20 @@ namespace Robot.Tests
             Assert.AreEqual(-90, jointAngeles.TibiaAngle);
         }
 
+        [Test]
+        public void CanCalculateIKForX10_5Y10_4_()
+        {
+            double coxaLength = 2.9;
+            double femurLength = 7.6;
+            double tibiaLength = 10.4;
+
+            double X = -10.5;
+            double Y = -10.4;
+
+            JointAngeles jointAngeles = IK.CalculateIK(-coxaLength, femurLength, tibiaLength, X, Y);
+            Assert.AreEqual(180, jointAngeles.FemurAngle);
+            Assert.AreEqual(0, jointAngeles.TibiaAngle);
+        }
 
         [Test]
         public void CanCalculateIKForX10_5Y16()

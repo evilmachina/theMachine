@@ -13,6 +13,15 @@ namespace Robot
         private Position _position;
         private Side _side;
         private double _offset;
+        private static double _legXPosition;
+        private readonly double _distanceToX;
+        private readonly double _distanceToY;
+
+        public Leg(double distanceToX, double distanceToY)
+        {
+            _distanceToX = distanceToX;
+            _distanceToY = distanceToY;
+        }
 
 
         public ServoBase Coxa
@@ -51,6 +60,15 @@ namespace Robot
             set { _Z = value; }
         }
 
+        public double RealX
+        {
+            get { return DistanceToX + X; }
+        }
+
+        public double RealY
+        {
+            get { return DistanceToY + Y; }
+        }
         public Position Position
         {
             get { return _position; }
@@ -68,6 +86,18 @@ namespace Robot
             get { return _offset; }
             set { _offset = value; }
         }
+
+        public double DistanceToX
+        {
+            get { return _distanceToX; }
+        }
+
+        public double DistanceToY
+        {
+            get { return _distanceToY; }
+        }
+
+        private double TotRotation { get; set; }
 
         public Movment[] GetMovements()
         {
@@ -106,18 +136,9 @@ namespace Robot
             Femur.Angle = angeles.FemurAngle;
             Tibia.Angle = angeles.TibiaAngle;
 
-            switch (Position)
-            {
-                case Position.Front:
-                    Coxa.Angle = IK.CalculateIKOneJoint(X, Z) + Offset;
-                    break;
-                case Position.Middle:
-                    Coxa.Angle = IK.CalculateIKOneJoint(X, Z);
-                    break;
-                case Position.Rear:
-                    Coxa.Angle = IK.CalculateIKOneJoint(X, Z) - Offset;
-                    break;
-            }
+            Coxa.Angle = IK.CalculateIKOneJoint(X, Z) + Offset;
+                   
+            
         }
 
         public static void CalculateXandZ(double direction, double distance,Side side, double X, double Z, out double newX, out double newZ)
@@ -135,6 +156,31 @@ namespace Robot
                 newX = side == Side.Left ? X + distance : X - distance;
                 newZ = Z + distance * directionInRadians;
             }
+        }
+
+
+
+        public static void CalculateNewPositionForRotation(Leg leg, double degrees, double direction,double xCenter,double yCenter)
+        {
+            //_legXPosition 
+
+            //Y-rotation
+            //angel in rad
+            double angleXRCT = Math.Atan2(leg.RealY - yCenter, leg.RealX - xCenter);
+           //G46 =DEGREES(ATAN2((B46-B72);(C46-C72)))
+            double tmpX = Math.Cos(angleXRCT + IK.DegToRad(degrees))*CalculateDistance(leg.RealX - xCenter, leg.RealY - yCenter) + xCenter;
+            tmpX = leg.RealX + tmpX;
+
+            double tmpY = Math.Sin(angleXRCT + IK.DegToRad(degrees)) * CalculateDistance(leg.RealX - xCenter, leg.RealY - yCenter) + xCenter;
+            tmpY = leg.RealY + tmpY;
+
+            leg.TotRotation = leg.TotRotation + degrees;
+
+        }
+
+        public static double CalculateDistance(double X, double Y)
+        {
+            return Math.Sqrt(Math.Pow(X, 2)*Math.Pow(Y, 2));
         }
     }
 }

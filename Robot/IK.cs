@@ -27,10 +27,12 @@ namespace Robot
                 /((2*femurLength)*tibiaLength));
 
             double femurAngle = femurAngleInRad*180/Math.PI;
-            double tibiaAngle = -(180 - (tibiaAngleInRad*180/Math.PI));
+            double tibiaAngle = -(180 - RadToDeg(tibiaAngleInRad));
 
             return new JointAngeles(femurAngle, tibiaAngle);
         }
+
+       
 
         public static JointAngeles CalculateIK(double coxaLength, double femurLength, double tibiaLength, double x,
                                                double y)
@@ -70,6 +72,16 @@ namespace Robot
         public static double CalculateIKOneJoint(double X, double Z)
         {
             return (Math.Atan2(Z, X) * 180 / Math.PI);
+        }
+
+        public static double RadToDeg(double angleInRad)
+        {
+            return angleInRad*180/Math.PI;
+        }
+
+        public static double DegToRad(double degrees)
+        {
+            return degrees*Math.PI/180;
         }
     }
 }

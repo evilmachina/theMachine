@@ -277,6 +277,59 @@ namespace Robot.Tests
             Assert.AreEqual(8.9, Math.Round(phoenix.rrl.Z, 1, MidpointRounding.ToEven));
         }
 
-      
+        [Test]
+        public void CanRotateBody5Deg()
+        {
+            //Startposision all axis to Zerro
+            var phoenix = RobotFactory.CreatePhoenix();
+
+            double degrees = 5.0;
+            double direction = 1;
+            phoenix.RotateBody(degrees, direction);
+
+            Assert.AreEqual(9, phoenix.lfl.Coxa.Angle);
+            Assert.AreEqual(0.0, phoenix.lfl.Femur.Angle);
+            Assert.AreEqual(0.5, phoenix.lfl.Tibia.Angle);
+
+            Assert.AreEqual(7.2, Math.Round(phoenix.lfl.X, 1, MidpointRounding.ToEven));
+            Assert.AreEqual(10.4, Math.Round(phoenix.lfl.Y, 1, MidpointRounding.ToEven));
+            Assert.AreEqual(-8.9, Math.Round(phoenix.lfl.Z, 1, MidpointRounding.ToEven));
+
+            Assert.AreEqual(-9.1, phoenix.rfl.Coxa.Angle);
+            Assert.AreEqual(0.0, phoenix.rfl.Femur.Angle);
+            Assert.AreEqual(0,2, phoenix.rfl.Tibia.Angle);
+            Assert.AreEqual(4.1, Math.Round(phoenix.rfl.X, 1, MidpointRounding.ToEven));
+            Assert.AreEqual(10.4, Math.Round(phoenix.rfl.Y, 1, MidpointRounding.ToEven));
+            Assert.AreEqual(-10.7, Math.Round(phoenix.rfl.Z, 1, MidpointRounding.ToEven));
+
+            Assert.AreEqual(7.8, phoenix.lml.Coxa.Angle);
+            Assert.AreEqual(0.0, phoenix.lml.Femur.Angle);
+            Assert.AreEqual(0.2, phoenix.lml.Tibia.Angle);
+            Assert.AreEqual(11.3, Math.Round(phoenix.lml.X, 1, MidpointRounding.ToEven));
+            Assert.AreEqual(10.4, Math.Round(phoenix.lml.Y, 1, MidpointRounding.ToEven));
+            Assert.AreEqual(1.5, Math.Round(phoenix.lml.Z, 1, MidpointRounding.ToEven));
+
+            Assert.AreEqual(-7.8, phoenix.rml.Coxa.Angle);
+            Assert.AreEqual(0.0, phoenix.rml.Femur.Angle);
+            Assert.AreEqual(0.2, phoenix.rml.Tibia.Angle);
+            Assert.AreEqual(11.3, Math.Round(phoenix.rml.X, 1, MidpointRounding.ToEven));
+            Assert.AreEqual(10.4, Math.Round(phoenix.rml.Y, 1, MidpointRounding.ToEven));
+            Assert.AreEqual(-1.5, Math.Round(phoenix.rml.Z, 1, MidpointRounding.ToEven));
+
+            Assert.AreEqual(9.1, phoenix.lrl.Coxa.Angle);
+            Assert.AreEqual(0.0, phoenix.lrl.Femur.Angle);
+            Assert.AreEqual(0.2, phoenix.lrl.Tibia.Angle);
+            Assert.AreEqual(4.1, Math.Round(phoenix.lrl.X, 1, MidpointRounding.ToEven));
+            Assert.AreEqual(10.4, Math.Round(phoenix.lrl.Y, 1, MidpointRounding.ToEven));
+            Assert.AreEqual(10.7, Math.Round(phoenix.lrl.Z, 1, MidpointRounding.ToEven));
+
+            Assert.AreEqual(-9.0, phoenix.rrl.Coxa.Angle);
+            Assert.AreEqual(0.0, phoenix.rrl.Femur.Angle);
+            Assert.AreEqual(0.5, phoenix.rrl.Tibia.Angle);
+            Assert.AreEqual(7.2, Math.Round(phoenix.rrl.X, 1, MidpointRounding.ToEven));
+            Assert.AreEqual(10.4, Math.Round(phoenix.rrl.Y, 1, MidpointRounding.ToEven));
+            Assert.AreEqual(8.9, Math.Round(phoenix.rrl.Z, 1, MidpointRounding.ToEven));
+        }
+
     }
 }

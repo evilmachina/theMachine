@@ -75,5 +75,10 @@ namespace Robot
 
             return movements.ToArray();
         }
+
+        public void RotateBody(double degrees, double direction)
+        {
+           // Leg.CalculateNewPositionForRotation(lfl, degrees, direction);
+        }
     }
 }
