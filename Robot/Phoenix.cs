@@ -11,6 +11,8 @@ namespace Robot
         private Leg _rml;
         private Leg _lrl;
         private Leg _rrl;
+        private double _xCenter;
+        private double _yCenter;
 
         public Leg lfl
         {
@@ -63,9 +65,9 @@ namespace Robot
             Leg.CalculateNewPosition(rrl, distance, direction, yDistance);
         }
 
-        public Movment[] GetMovements()
+        public MovmentComandAX12[] GetMovements()
         {
-            var movements = new List<Movment>();
+            var movements = new List<MovmentComandAX12>();
             movements.AddRange(lfl.GetMovements());
             movements.AddRange(rfl.GetMovements());
             movements.AddRange(lml.GetMovements());
@@ -78,7 +80,12 @@ namespace Robot
 
         public void RotateBody(double degrees, double direction)
         {
-           // Leg.CalculateNewPositionForRotation(lfl, degrees, direction);
+           Leg.CalculateNewPositionForRotation(lfl, degrees, direction, _xCenter , _yCenter);
+           Leg.CalculateNewPositionForRotation(rfl, degrees, direction, _xCenter, _yCenter);
+           Leg.CalculateNewPositionForRotation(lml, degrees, direction, _xCenter, _yCenter);
+           Leg.CalculateNewPositionForRotation(rml, degrees, direction, _xCenter, _yCenter);
+           Leg.CalculateNewPositionForRotation(lrl, degrees, direction, _xCenter, _yCenter);
+           Leg.CalculateNewPositionForRotation(rrl, degrees, direction, _xCenter, _yCenter);
         }
     }
 }

@@ -27,7 +27,7 @@ namespace Robot
                 /((2*femurLength)*tibiaLength));
 
             double femurAngle = femurAngleInRad*180/Math.PI;
-            double tibiaAngle = -(180 - RadToDeg(tibiaAngleInRad));
+            double tibiaAngle = RadToDeg(tibiaAngleInRad);
 
             return new JointAngeles(femurAngle, tibiaAngle);
         }
@@ -53,8 +53,8 @@ namespace Robot
                 ((femurLength * femurLength) + (tibiaLength * tibiaLength) - (lengthSW * lengthSW))
                 / ((2 * femurLength) * tibiaLength));
 
-            double femurAngle = -(femurAngleInRad * 180 / Math.PI) + 90;
-            double tibiaAngle = -(90 -((tibiaAngleInRad * 180 / Math.PI))) ;
+            double femurAngle = (femurAngleInRad * 180 / Math.PI);
+            double tibiaAngle = (((tibiaAngleInRad * 180 / Math.PI))) ;
 
             return new JointAngeles(femurAngle, tibiaAngle);
         }

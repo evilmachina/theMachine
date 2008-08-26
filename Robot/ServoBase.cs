@@ -2,7 +2,7 @@ using System;
 
 namespace Robot
 {
-    public abstract class ServoBase
+    public class ServoBase
     {
         private readonly double _length;
         private readonly double _offset;
@@ -73,8 +73,6 @@ namespace Robot
             }
         }
 
-        public abstract Movment GetMovment();
-
         protected static short Convert(double d)
         {
             return (short)((0x3ff / (double)300) * (150 + d));
@@ -112,6 +110,14 @@ namespace Robot
             }
 
             return speed;
+        }
+
+        public virtual MovmentComandAX12 GetMovement()
+        {
+            short positon = (short)0;
+            positon = Convert((double)Side*(Angle + Offset));
+          
+            return new MovmentComandAX12((byte)ServoId, positon, CalculateSpeed());
         }
     }
 }

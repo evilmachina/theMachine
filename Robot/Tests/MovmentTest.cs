@@ -37,20 +37,20 @@ namespace Robot.Tests
             short tibiaAngleRight = Convert(-(jointAngeles.TibiaAngle + 90));
 
 
-            var movments = new List<Movment>
+            var movments = new List<MovmentComandAX12>
                                {
-                                   new Movment(3, femurAngleLeft, speed),
-                                   new Movment(5, tibiaAngleLeft, speed),
-                                   new Movment(4, femurAngleRight, speed),
-                                   new Movment(6, tibiaAngleRight, speed),
-                                   new Movment(9, femurAngleLeft, speed),
-                                   new Movment(11, tibiaAngleLeft, speed),
-                                   new Movment(10, femurAngleRight, speed),
-                                   new Movment(12, tibiaAngleRight, speed),
-                                   new Movment(15, femurAngleLeft, speed),
-                                   new Movment(17, tibiaAngleLeft, speed),
-                                   new Movment(16, femurAngleRight, speed),
-                                   new Movment(18, tibiaAngleRight, speed)
+                                   new MovmentComandAX12(3, femurAngleLeft, speed),
+                                   new MovmentComandAX12(5, tibiaAngleLeft, speed),
+                                   new MovmentComandAX12(4, femurAngleRight, speed),
+                                   new MovmentComandAX12(6, tibiaAngleRight, speed),
+                                   new MovmentComandAX12(9, femurAngleLeft, speed),
+                                   new MovmentComandAX12(11, tibiaAngleLeft, speed),
+                                   new MovmentComandAX12(10, femurAngleRight, speed),
+                                   new MovmentComandAX12(12, tibiaAngleRight, speed),
+                                   new MovmentComandAX12(15, femurAngleLeft, speed),
+                                   new MovmentComandAX12(17, tibiaAngleLeft, speed),
+                                   new MovmentComandAX12(16, femurAngleRight, speed),
+                                   new MovmentComandAX12(18, tibiaAngleRight, speed)
                                };
 
 
@@ -77,20 +77,20 @@ namespace Robot.Tests
             short tibiaAngleRight = Convert(-(jointAngeles.TibiaAngle + 90));
 
 
-            var movments = new List<Movment>
+            var movments = new List<MovmentComandAX12>
                                {
-                                   new Movment(3, femurAngleLeft, speed),
-                                   new Movment(5, tibiaAngleLeft, speed),
-                                   new Movment(4, femurAngleRight, speed),
-                                   new Movment(6, tibiaAngleRight, speed),
-                                   new Movment(9, femurAngleLeft, speed),
-                                   new Movment(11, tibiaAngleLeft, speed),
-                                   new Movment(10, femurAngleRight, speed),
-                                   new Movment(12, tibiaAngleRight, speed),
-                                   new Movment(15, femurAngleLeft, speed),
-                                   new Movment(17, tibiaAngleLeft, speed),
-                                   new Movment(16, femurAngleRight, speed),
-                                   new Movment(18, tibiaAngleRight, speed)
+                                   new MovmentComandAX12(3, femurAngleLeft, speed),
+                                   new MovmentComandAX12(5, tibiaAngleLeft, speed),
+                                   new MovmentComandAX12(4, femurAngleRight, speed),
+                                   new MovmentComandAX12(6, tibiaAngleRight, speed),
+                                   new MovmentComandAX12(9, femurAngleLeft, speed),
+                                   new MovmentComandAX12(11, tibiaAngleLeft, speed),
+                                   new MovmentComandAX12(10, femurAngleRight, speed),
+                                   new MovmentComandAX12(12, tibiaAngleRight, speed),
+                                   new MovmentComandAX12(15, femurAngleLeft, speed),
+                                   new MovmentComandAX12(17, tibiaAngleLeft, speed),
+                                   new MovmentComandAX12(16, femurAngleRight, speed),
+                                   new MovmentComandAX12(18, tibiaAngleRight, speed)
                                };
 
 
@@ -117,20 +117,20 @@ namespace Robot.Tests
             short tibiaAngleRight = Convert(-(jointAngeles.TibiaAngle + 90));
 
 
-            var movments = new List<Movment>
+            var movments = new List<MovmentComandAX12>
                                {
-                                   new Movment(3, femurAngleLeft, speed),
-                                   new Movment(5, tibiaAngleLeft, speed),
-                                   new Movment(4, femurAngleRight, speed),
-                                   new Movment(6, tibiaAngleRight, speed),
-                                   new Movment(9, femurAngleLeft, speed),
-                                   new Movment(11, tibiaAngleLeft, speed),
-                                   new Movment(10, femurAngleRight, speed),
-                                   new Movment(12, tibiaAngleRight, speed),
-                                   new Movment(15, femurAngleLeft, speed),
-                                   new Movment(17, tibiaAngleLeft, speed),
-                                   new Movment(16, femurAngleRight, speed),
-                                   new Movment(18, tibiaAngleRight, speed)
+                                   new MovmentComandAX12(3, femurAngleLeft, speed),
+                                   new MovmentComandAX12(5, tibiaAngleLeft, speed),
+                                   new MovmentComandAX12(4, femurAngleRight, speed),
+                                   new MovmentComandAX12(6, tibiaAngleRight, speed),
+                                   new MovmentComandAX12(9, femurAngleLeft, speed),
+                                   new MovmentComandAX12(11, tibiaAngleLeft, speed),
+                                   new MovmentComandAX12(10, femurAngleRight, speed),
+                                   new MovmentComandAX12(12, tibiaAngleRight, speed),
+                                   new MovmentComandAX12(15, femurAngleLeft, speed),
+                                   new MovmentComandAX12(17, tibiaAngleLeft, speed),
+                                   new MovmentComandAX12(16, femurAngleRight, speed),
+                                   new MovmentComandAX12(18, tibiaAngleRight, speed)
                                };
 
 
@@ -143,10 +143,10 @@ namespace Robot.Tests
         [Test]
         public void CanGetMovementFromLeftTibiaZeroOffset()
         {
-            Tibia tibia  = new Tibia(10.4, 0, 5, 0, 0, Side.Left);
-            Movment movment = tibia.GetMovment();
+            ServoBase tibia = new ServoBase(10.4, 0, 5, 0, 0, Side.Left);
+            MovmentComandAX12 movmentComandAX12 = tibia.GetMovement();
 
-            List<byte> movmentInBytes = (List<byte>) movment.ToByte();
+            List<byte> movmentInBytes = (List<byte>) movmentComandAX12.ToByte();
             Assert.AreEqual(5, movmentInBytes[0]); //ServoId
             Assert.AreEqual(0x1ff, BitConverter.ToInt16(movmentInBytes.ToArray(), 1));
             Assert.AreEqual(0x050, BitConverter.ToInt16(movmentInBytes.ToArray(), 3));
@@ -157,10 +157,10 @@ namespace Robot.Tests
         public void CanGetMovementForLeftTibiaWithOffset()
         {
 
-            Tibia tibia = new Tibia(10.4, 20, 5, 0, 0, Side.Left);
-            Movment movment = tibia.GetMovment();
+            ServoBase tibia = new ServoBase(10.4, 20, 5, 0, 0, Side.Left);
+            MovmentComandAX12 movmentComandAX12 = tibia.GetMovement();
 
-            List<byte> movmentInBytes = (List<byte>)movment.ToByte();
+            List<byte> movmentInBytes = (List<byte>)movmentComandAX12.ToByte();
             Assert.AreEqual(5, movmentInBytes[0]); //ServoId
             Assert.AreEqual(0x1BB, BitConverter.ToInt16(movmentInBytes.ToArray(), 1));
             Assert.AreEqual(0x050, BitConverter.ToInt16(movmentInBytes.ToArray(), 3));
@@ -169,10 +169,10 @@ namespace Robot.Tests
         [Test]
         public void CanGetMovementForRightTibiaWithOffset()
         {
-            Tibia tibia = new Tibia(10.4, 20, 5, 0, 0, Side.Right);
-            Movment movment = tibia.GetMovment();
+            ServoBase tibia = new ServoBase(10.4, 20, 5, 0, 0, Side.Right);
+            MovmentComandAX12 movmentComandAX12 = tibia.GetMovement();
 
-            List<byte> movmentInBytes = (List<byte>)movment.ToByte();
+            List<byte> movmentInBytes = (List<byte>)movmentComandAX12.ToByte();
             Assert.AreEqual(5, movmentInBytes[0]); //ServoId
             Assert.AreEqual(0x243, BitConverter.ToInt16(movmentInBytes.ToArray(), 1));
             Assert.AreEqual(0x050, BitConverter.ToInt16(movmentInBytes.ToArray(), 3));
@@ -183,10 +183,10 @@ namespace Robot.Tests
         public void CanGetMovementForLeftFemurWithZeroOffset()
         {
 
-            Femur femur = new Femur(10.4, 0, 5, 0, 0, Side.Left);
-            Movment movment = femur.GetMovment();
+            ServoBase servoBase = new ServoBase(10.4, 0, 5, 0, 0, Side.Left);
+            MovmentComandAX12 movmentComandAX12 = servoBase.GetMovement();
 
-            List<byte> movmentInBytes = (List<byte>)movment.ToByte();
+            List<byte> movmentInBytes = (List<byte>)movmentComandAX12.ToByte();
             Assert.AreEqual(5, movmentInBytes[0]); //ServoId
             Assert.AreEqual(0x1FF, BitConverter.ToInt16(movmentInBytes.ToArray(), 1));
             Assert.AreEqual(0x050, BitConverter.ToInt16(movmentInBytes.ToArray(), 3));
@@ -197,10 +197,10 @@ namespace Robot.Tests
         [Test]
         public void CanGetMovementForLeftFemurWithOffset()
         {
-            Femur femur = new Femur(10.4, 20, 5, 0, 0, Side.Left);
-            Movment movment = femur.GetMovment();
+            ServoBase servoBase = new ServoBase(10.4, 20, 5, 0, 0, Side.Left);
+            MovmentComandAX12 movmentComandAX12 = servoBase.GetMovement();
 
-            List<byte> movmentInBytes = (List<byte>)movment.ToByte();
+            List<byte> movmentInBytes = (List<byte>)movmentComandAX12.ToByte();
             Assert.AreEqual(5, movmentInBytes[0]); //ServoId
             Assert.AreEqual(0x1BB, BitConverter.ToInt16(movmentInBytes.ToArray(), 1));
             Assert.AreEqual(0x050, BitConverter.ToInt16(movmentInBytes.ToArray(), 3));
@@ -209,10 +209,10 @@ namespace Robot.Tests
         [Test]
         public void CanGetMovementForRightFemurWithOffset()
         {
-            Femur femur = new Femur(10.4, 20, 5, 0, 0, Side.Right);
-            Movment movment = femur.GetMovment();
+            ServoBase servoBase = new ServoBase(10.4, 20, 5, 0, 0, Side.Right);
+            MovmentComandAX12 movmentComandAX12 = servoBase.GetMovement();
 
-            List<byte> movmentInBytes = (List<byte>)movment.ToByte();
+            List<byte> movmentInBytes = (List<byte>)movmentComandAX12.ToByte();
             Assert.AreEqual(5, movmentInBytes[0]); //ServoId
             Assert.AreEqual(0x243, BitConverter.ToInt16(movmentInBytes.ToArray(), 1));
             Assert.AreEqual(0x050, BitConverter.ToInt16(movmentInBytes.ToArray(), 3));
@@ -224,10 +224,10 @@ namespace Robot.Tests
         public void CanGetMovementForLeftCoxaWithZeroOffset()
         {
 
-            Coxa coxa = new Coxa(10.4, 0, 5, 0, 0, Side.Left);
-            Movment movment = coxa.GetMovment();
+            ServoBase coxa = new ServoBase(10.4, 0, 5, 0, 0, Side.Left);
+            MovmentComandAX12 movmentComandAX12 = coxa.GetMovement();
 
-            List<byte> movmentInBytes = (List<byte>)movment.ToByte();
+            List<byte> movmentInBytes = (List<byte>)movmentComandAX12.ToByte();
             Assert.AreEqual(5, movmentInBytes[0]); //ServoId
             Assert.AreEqual(0x1FF, BitConverter.ToInt16(movmentInBytes.ToArray(), 1));
             Assert.AreEqual(0x050, BitConverter.ToInt16(movmentInBytes.ToArray(), 3));
@@ -236,10 +236,10 @@ namespace Robot.Tests
         [Test]
         public void CanGetMovementForLeftCoxaWithOffset()
         {
-            Coxa coxa = new Coxa(10.4, 20, 5, 0, 0, Side.Left);
-            Movment movment = coxa.GetMovment();
+            ServoBase coxa = new ServoBase(10.4, 20, 5, 0, 0, Side.Left);
+            MovmentComandAX12 movmentComandAX12 = coxa.GetMovement();
 
-            List<byte> movmentInBytes = (List<byte>)movment.ToByte();
+            List<byte> movmentInBytes = (List<byte>)movmentComandAX12.ToByte();
             Assert.AreEqual(5, movmentInBytes[0]); //ServoId
             Assert.AreEqual(0x1BB, BitConverter.ToInt16(movmentInBytes.ToArray(), 1));
             Assert.AreEqual(0x050, BitConverter.ToInt16(movmentInBytes.ToArray(), 3));
@@ -248,10 +248,10 @@ namespace Robot.Tests
         [Test]
         public void CanGetMovementForRightCoxaWithOffset()
         {
-            Coxa coxa = new Coxa(10.4, 20, 5, 0, 0, Side.Right);
-            Movment movment = coxa.GetMovment();
+            ServoBase coxa = new ServoBase(10.4, 20, 5, 0, 0, Side.Right);
+            MovmentComandAX12 movmentComandAX12 = coxa.GetMovement();
 
-            List<byte> movmentInBytes = (List<byte>)movment.ToByte();
+            List<byte> movmentInBytes = (List<byte>)movmentComandAX12.ToByte();
             Assert.AreEqual(5, movmentInBytes[0]); //ServoId
             Assert.AreEqual(0x243, BitConverter.ToInt16(movmentInBytes.ToArray(), 1));
             Assert.AreEqual(0x050, BitConverter.ToInt16(movmentInBytes.ToArray(), 3));
@@ -268,14 +268,14 @@ namespace Robot.Tests
                 X = 5.7,
                 Y = 10.4,
                 Z = -9.8726896031426,
-                Coxa = new Coxa(3.8, 0, 1, 0, 0, Side.Left),
-                Femur = new Femur(7.6, 0, 3, 0, 0, Side.Left),
-                Tibia = new Tibia(10.4, 20, 5, 0, 0, Side.Left)
+                Coxa = new ServoBase(3.8, 0, 1, 0, 0, Side.Left),
+                Femur = new ServoBase(7.6, 0, 3, 0, 0, Side.Left),
+                Tibia = new ServoBase(10.4, 20, 5, 0, 0, Side.Left)
             };
 
             Leg.CalculateNewPosition(leg, 0,1);
 
-            Movment[] movement = leg.GetMovements();
+            MovmentComandAX12[] movement = leg.GetMovements();
 
             List<byte> movmentInBytes;
 

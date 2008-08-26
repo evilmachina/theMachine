@@ -29,10 +29,10 @@ namespace Robot.Tests
         public void CanCreateInstructionPacketForSyncedMovment()
         {
             ISender sender = new FakeSender();
-            var movment1 = new Movment(0, 0x010, 0x150);
-            var movment2 = new Movment(1, 0x220, 0x360);
-            var movment3 = new Movment(2, 0x030, 0x170);
-            var movment4 = new Movment(3, 0x220, 0x380);
+            var movment1 = new MovmentComandAX12(0, 0x010, 0x150);
+            var movment2 = new MovmentComandAX12(1, 0x220, 0x360);
+            var movment3 = new MovmentComandAX12(2, 0x030, 0x170);
+            var movment4 = new MovmentComandAX12(3, 0x220, 0x380);
             var instructionPacket = new InstructionPacketSyncMovment(sender, movment1, movment2, movment3, movment4);
 
             var corectResult = new byte[]
@@ -60,8 +60,8 @@ namespace Robot.Tests
         public void CanMoveServo5()
         {
             ISender sender = new CommunicationObject();
-            var movment1 = new Movment(5, 0x0ff, 0x150);
-            var movment2 = new Movment(3, 0x0ff, 0x150);
+            var movment1 = new MovmentComandAX12(5, 0x0ff, 0x150);
+            var movment2 = new MovmentComandAX12(3, 0x0ff, 0x150);
 
             var instructionPacket = new InstructionPacketSyncMovment(sender, movment1, movment2);
             instructionPacket.Send();

@@ -62,7 +62,6 @@
   <ItemGroup>
     <Compile Include="CommunicationObject.cs" />
     <Compile Include="FakeSender.cs" />
-    <Compile Include="Femur.cs" />
     <Compile Include="HomePosition.cs" />
     <Compile Include="IK.cs" />
     <Compile Include="ILeg.cs" />
@@ -75,7 +74,7 @@
     <Compile Include="JointAngeles.cs" />
     <Compile Include="Leg.cs" />
     <Compile Include="LegPosition.cs" />
-    <Compile Include="Movment.cs" />
+    <Compile Include="MovmentComandAX12.cs" />
     <Compile Include="Phoenix.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -83,12 +82,10 @@
     <Compile Include="RobotFactory.cs" />
     <Compile Include="ServoBase.cs" />
     <Compile Include="Tests\ConnectTest.cs" />
-    <Compile Include="Coxa.cs" />
     <Compile Include="Tests\IKTests.cs" />
     <Compile Include="Tests\MovmentTest.cs" />
     <Compile Include="Tests\RobotTest.cs" />
     <Compile Include="Side.cs" />
-    <Compile Include="Tibia.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">

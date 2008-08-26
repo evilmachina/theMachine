@@ -8,7 +8,7 @@ namespace Robot
     {
         private readonly Phoenix _phoenix;
         private readonly HomePosition _homePosition;
-        List<Movment>[] _movments = new List<Movment>[6];
+        List<MovmentComandAX12>[] _movments = new List<MovmentComandAX12>[6];
         private int rflStep;
         private int rmlStep;
         private int rrlStep;
@@ -21,7 +21,7 @@ namespace Robot
         {
             for (int i = 0; i < _movments.Length; i++)
             {
-                _movments[i] = new List<Movment>();
+                _movments[i] = new List<MovmentComandAX12>();
             }
 
             rflStep = 5;
@@ -48,7 +48,7 @@ namespace Robot
             step = 0;
         }
 
-        public List<Movment>[] Positions
+        public List<MovmentComandAX12>[] Positions
         {
             get { return _movments; }
         }
@@ -111,9 +111,9 @@ namespace Robot
 
 
 
-        public Movment[] NextSequence(double direction, double stepValue)
+        public MovmentComandAX12[] NextSequence(double direction, double stepValue)
         {
-            List<Movment> nexSequence = new List<Movment>();
+            List<MovmentComandAX12> nexSequence = new List<MovmentComandAX12>();
 
             double stepHeight = 4;
 
