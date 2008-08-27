@@ -151,13 +151,13 @@ namespace Robot
 
             if (direction > 45 || direction < -45)
             {
-                if (side == Side.Left) newX = X + (distance/directionInRadians);
-                else newX = X - (distance/directionInRadians);
+                newX = X + (distance/directionInRadians);
+                
                 newZ = Z + distance;
             }
             else
             {
-                newX = side == Side.Left ? X + distance : X - distance;
+                newX = X + distance;
                 newZ = Z + distance * directionInRadians;
             }
         }
