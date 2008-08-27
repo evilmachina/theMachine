@@ -268,9 +268,9 @@ namespace Robot.Tests
                 X = 5.7,
                 Y = 10.4,
                 Z = -9.8726896031426,
-                Coxa = new ServoBase(3.8, 0, 1, 0, 0, Side.Left),
-                Femur = new ServoBase(7.6, 0, 3, 0, 0, Side.Left),
-                Tibia = new ServoBase(10.4, 20, 5, 0, 0, Side.Left)
+                Coxa = new ServoBase(3.8, 60, 1, 0, 0, Side.Left),
+                Femur = new ServoBase(7.6, -90, 3, 0, 0, Side.Left),
+                Tibia = new ServoBase(10.4, -70, 5, 0, 0, Side.Left)
             };
 
             Leg.CalculateNewPosition(leg, 0,1);
