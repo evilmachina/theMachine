@@ -69,9 +69,9 @@ namespace Robot
             return x - length;
         }
 
-        public static double CalculateIKOneJoint(double X, double Z)
+        public static double CalculateIKOneJoint(double X, double Y)
         {
-            return (Math.Atan2(Z, X) * 180 / Math.PI);
+            return (Math.Atan2(Y, X) * 180 / Math.PI);
         }
 
         public static double RadToDeg(double angleInRad)
@@ -82,6 +82,16 @@ namespace Robot
         public static double DegToRad(double degrees)
         {
             return degrees*Math.PI/180;
+        }
+
+        public static double Rotate180Degrees(double angleToRotate)
+        {
+            if(angleToRotate < 0)
+            {
+                return  -angleToRotate - 180;
+            }
+
+            return 180 - angleToRotate;
         }
     }
 }

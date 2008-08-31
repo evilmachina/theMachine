@@ -61,7 +61,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommunicationObject.cs" />
+    <Compile Include="Coxa.cs" />
     <Compile Include="FakeSender.cs" />
+    <Compile Include="Femur.cs" />
     <Compile Include="HomePosition.cs" />
     <Compile Include="IK.cs" />
     <Compile Include="ILeg.cs" />
@@ -86,6 +88,7 @@
     <Compile Include="Tests\MovmentTest.cs" />
     <Compile Include="Tests\RobotTest.cs" />
     <Compile Include="Side.cs" />
+    <Compile Include="Tibia.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">

@@ -8,7 +8,7 @@ namespace Robot.Tests
     {
         private const int SERVO_ID = 1;
 
-        [Test]
+        [Test, Ignore("Ned to be connected to robot")]
         public void CanCreateInstructionPacketForPingId1()
         {
             ISender sender = new FakeSender();
@@ -25,7 +25,7 @@ namespace Robot.Tests
             Assert.AreEqual(corectResult, instructionPacket.ToByte());
         }
 
-        [Test]
+        [Test, Ignore("Ned to be connected to robot")]
         public void CanCreateInstructionPacketForSyncedMovment()
         {
             ISender sender = new FakeSender();
@@ -46,7 +46,7 @@ namespace Robot.Tests
             // Console.WriteLine(BitConverter.ToString(instructionPacket.ToByte()));
         }
 
-        [Test]
+        [Test, Ignore("Ned to be connected to robot")]
         public void CanFindCorectComPort()
         {
             var communicationObject = new CommunicationObject();
@@ -56,7 +56,7 @@ namespace Robot.Tests
         }
 
 
-        [Test]
+        [Test, Ignore("Ned to be connected to robot")]
         public void CanMoveServo5()
         {
             ISender sender = new CommunicationObject();
@@ -72,7 +72,7 @@ namespace Robot.Tests
             // Console.WriteLine(BitConverter.ToString(instructionPacket.ToByte()));
         }
 
-        [Test]
+        [Test, Ignore("Ned to be connected to robot")]
         public void CanSendInstructionPacketPingToServoID1()
         {
             ISender sender = new CommunicationObject();
@@ -83,7 +83,7 @@ namespace Robot.Tests
             ((CommunicationObject) sender).Dispose();
         }
 
-        [Test]
+        [Test, Ignore("Ned to be connected to robot")]
         public void MakeQuiet()
         {
             var ids = new byte[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18};

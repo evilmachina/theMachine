@@ -80,12 +80,12 @@ namespace Robot
 
         public void RotateBody(double degrees, double direction)
         {
-           Leg.CalculateNewPositionForRotation(lfl, degrees, direction, _xCenter , _yCenter);
-           Leg.CalculateNewPositionForRotation(rfl, degrees, direction, _xCenter, _yCenter);
-           Leg.CalculateNewPositionForRotation(lml, degrees, direction, _xCenter, _yCenter);
-           Leg.CalculateNewPositionForRotation(rml, degrees, direction, _xCenter, _yCenter);
-           Leg.CalculateNewPositionForRotation(lrl, degrees, direction, _xCenter, _yCenter);
-           Leg.CalculateNewPositionForRotation(rrl, degrees, direction, _xCenter, _yCenter);
+           Leg.RotateLeg(lfl, degrees, direction, _xCenter , _yCenter);
+           Leg.RotateLeg(rfl, degrees, direction, _xCenter, _yCenter);
+           Leg.RotateLeg(lml, degrees, direction, _xCenter, _yCenter);
+           Leg.RotateLeg(rml, degrees, direction, _xCenter, _yCenter);
+           Leg.RotateLeg(lrl, degrees, direction, _xCenter, _yCenter);
+           Leg.RotateLeg(rrl, degrees, direction, _xCenter, _yCenter);
         }
     }
 }

@@ -164,24 +164,24 @@ namespace Robot
 
 
 
-        public static void CalculateNewPositionForRotation(Leg leg, double degrees, double direction,double xCenter,double zCenter)
+        public static void RotateLeg(Leg leg, double degrees, double direction,double xCenter,double zCenter)
         {
-            //_legXPosition 
-
-            //Y-rotation
-            //angel in rad
-            double angleXRCT = Math.Atan2(leg.RealZ - zCenter, leg.RealX - xCenter);
-           //G46 =DEGREES(ATAN2((B46-B72);(C46-C72)))
-            double tmpX = Math.Cos(angleXRCT + IK.DegToRad(degrees))* CalculateHypotenuse(leg.RealX - xCenter, leg.RealZ - zCenter) + xCenter;
-            
-
-            double tmpZ = Math.Sin(angleXRCT + IK.DegToRad(degrees)) * CalculateHypotenuse(leg.RealX - xCenter, leg.RealZ - zCenter) + xCenter;
-          
-
+            double newX;
+            double newZ;
+            CalculateNewCoordinatesForRotation(leg.RealX, leg.RealZ, xCenter, zCenter, degrees, out newX, out newZ);
             leg.TotRotation = leg.TotRotation + degrees;
 
-            leg.SetRealXYZ(tmpX, tmpZ, leg.Y);
+            leg.SetRealXYZ(newX, newZ, leg.Y);
 
+        }
+
+        public static void CalculateNewCoordinatesForRotation(double realX, double realZ, double xCenter, double zCenter, double degrees, out double newX, out double newZ)
+        {
+            double angleXRCT = Math.Atan2(realZ - zCenter, realX - xCenter);
+           // double angleXRCT = Math.Atan((realZ - zCenter)/(realX - xCenter));
+            newX = Math.Cos(angleXRCT + IK.DegToRad(degrees))* CalculateHypotenuse(realX - xCenter, realZ - zCenter) + xCenter;
+
+            newZ = Math.Sin(angleXRCT + IK.DegToRad(degrees)) * CalculateHypotenuse(realX - xCenter, realZ - zCenter) + zCenter;
         }
 
         public static double CalculateHypotenuse(double X, double Y)
@@ -189,7 +189,7 @@ namespace Robot
             return Math.Sqrt(Math.Pow(X, 2) + Math.Pow(Y, 2));
         }
 
-        private void SetRealXYZ(double x, double z, double y)
+        public void SetRealXYZ(double x, double z, double y)
         {
             SetXYZ(x - _distanceToX, z - _distanceToZ, y);
         }

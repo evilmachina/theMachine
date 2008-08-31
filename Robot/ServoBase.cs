@@ -101,7 +101,7 @@ namespace Robot
             
             
            
-            var speed = (short)((Math.Sqrt(Math.Pow(_oldAngle - _angle, 2))) / K / _timeBox);
+            var speed = (short)((Math.Sqrt(Math.Pow(CalculateAngle(), 2))) / K / _timeBox);
             if(speed == 0)
                 return 1;
             else if(speed > 0x3ff)
@@ -112,9 +112,18 @@ namespace Robot
             return speed;
         }
 
+        private double CalculateAngle()
+        {
+            if(Side == Side.Right)
+            {
+                return IK.Rotate180Degrees(_oldAngle) - IK.Rotate180Degrees(_angle);
+            }
+            return _oldAngle - _angle;
+        }
+
         public virtual MovmentComandAX12 GetMovement()
         {
-            short positon = (short)0;
+            short positon = 0;
             positon = Convert((double)Side*(Angle + Offset));
           
             return new MovmentComandAX12((byte)ServoId, positon, CalculateSpeed());
