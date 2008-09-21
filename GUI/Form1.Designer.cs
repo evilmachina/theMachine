@@ -43,6 +43,12 @@
             this.TimeBox = new System.Windows.Forms.Label();
             this.StepValue = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.xCenter = new System.Windows.Forms.TextBox();
+            this.degrees = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.zCenter = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // ForwardButton
@@ -184,11 +190,78 @@
             this.textBox2.Leave += new System.EventHandler(this.StepValue_Leave);
             this.textBox2.Enter += new System.EventHandler(this.StepValue_Enter);
             // 
+            // xCenter
+            // 
+            this.xCenter.Location = new System.Drawing.Point(15, 251);
+            this.xCenter.Name = "xCenter";
+            this.xCenter.Size = new System.Drawing.Size(48, 20);
+            this.xCenter.TabIndex = 18;
+            this.xCenter.Text = "0";
+            this.xCenter.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.xCenter.Leave += new System.EventHandler(this.StepValue_Leave);
+            this.xCenter.Enter += new System.EventHandler(this.StepValue_Enter);
+            // 
+            // degrees
+            // 
+            this.degrees.Location = new System.Drawing.Point(15, 200);
+            this.degrees.Name = "degrees";
+            this.degrees.Size = new System.Drawing.Size(48, 20);
+            this.degrees.TabIndex = 17;
+            this.degrees.Text = "1";
+            this.degrees.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            this.degrees.Leave += new System.EventHandler(this.StepValue_Leave);
+            this.degrees.Enter += new System.EventHandler(this.StepValue_Enter);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 235);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(47, 13);
+            this.label3.TabIndex = 16;
+            this.label3.Text = "X center";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 184);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(47, 13);
+            this.label4.TabIndex = 15;
+            this.label4.Text = "Degrees";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // zCenter
+            // 
+            this.zCenter.Location = new System.Drawing.Point(15, 300);
+            this.zCenter.Name = "zCenter";
+            this.zCenter.Size = new System.Drawing.Size(48, 20);
+            this.zCenter.TabIndex = 20;
+            this.zCenter.Text = "0";
+            this.zCenter.Leave += new System.EventHandler(this.StepValue_Leave);
+            this.zCenter.Enter += new System.EventHandler(this.StepValue_Enter);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(12, 284);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(47, 13);
+            this.label5.TabIndex = 19;
+            this.label5.Text = "Y center";
+            // 
             // frmBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(534, 387);
+            this.Controls.Add(this.zCenter);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.xCenter);
+            this.Controls.Add(this.degrees);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.StepValue);
             this.Controls.Add(this.TimeBox);
@@ -207,6 +280,7 @@
             this.Name = "frmBase";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.frmBase_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -230,6 +304,12 @@
         private System.Windows.Forms.Label TimeBox;
         private System.Windows.Forms.TextBox StepValue;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox xCenter;
+        private System.Windows.Forms.TextBox degrees;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox zCenter;
+        private System.Windows.Forms.Label label5;
 
     }
 }

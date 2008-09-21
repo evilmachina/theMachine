@@ -48,9 +48,25 @@ namespace GUI
             
         }
 
+        private void Rotate(int i1)
+        {
+            try
+            {
+                ServoBase.TimeBox = Convert.ToDouble(textBox2.Text);
+                new InstructionPacketSyncMovment(_sender, _rippelGate6.NextSequenceRotation( i1 * Convert.ToDouble(degrees.Text),Convert.ToDouble(xCenter.Text),Convert.ToDouble(zCenter.Text))).Send();
+                Thread.Sleep((int)(ServoBase.TimeBox * 1000));
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("timebox");
+            }
+        }
+
         private void Form1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
+
+          
             switch (e.KeyChar)
             {
                 case '8':
@@ -77,8 +93,16 @@ namespace GUI
                 case '7':
                     Move(135, 1);
                     break;
+                case 'a':
+                    Rotate(1);
+                    break;
+                case 'd':
+                    Rotate(-1);
+                    break;
             }
         }
+
+      
 
         private void StepValue_Enter(object sender, EventArgs e)
         {
@@ -88,6 +112,31 @@ namespace GUI
         private void StepValue_Leave(object sender, EventArgs e)
         {
             KeyPreview = true;
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frmBase_Load(object sender, EventArgs e)
+        {
+
         }
 
  
