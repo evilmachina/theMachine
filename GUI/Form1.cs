@@ -1,22 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using Microsoft.VisualBasic.Devices;
 using Robot;
+
 
 namespace GUI
 {
     public partial class frmBase : Form
     {
-        readonly ISender _sender = new CommunicationObject();
-        HomePosition _homePosition = RobotFactory.CreateHomePosition();
-        Phoenix _phoenix = RobotFactory.CreatePhoenix();
+        readonly ISender _sender = new CommunicationObject("COM5");
+        HomePosition _homePosition = HomePositionFactory.CreateHomePosition();
+        Phoenix _phoenix = RobotFactory.CreatePhoenix(HomePositionFactory.CreateHomePosition());
         RippelGate6 _rippelGate6;
         int i = 0;
 

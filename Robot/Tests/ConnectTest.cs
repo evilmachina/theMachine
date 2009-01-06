@@ -49,7 +49,7 @@ namespace Robot.Tests
         [Test, Ignore("Ned to be connected to robot")]
         public void CanFindCorectComPort()
         {
-            var communicationObject = new CommunicationObject();
+            var communicationObject = new CommunicationObject("COM5");
             communicationObject.Open();
             Assert.IsTrue(communicationObject.IsOpen);
             communicationObject.Dispose();
@@ -59,7 +59,7 @@ namespace Robot.Tests
         [Test, Ignore("Ned to be connected to robot")]
         public void CanMoveServo5()
         {
-            ISender sender = new CommunicationObject();
+            ISender sender = new CommunicationObject("COM5");
             var movment1 = new MovmentComandAX12(5, 0x0ff, 0x150);
             var movment2 = new MovmentComandAX12(3, 0x0ff, 0x150);
 
@@ -68,14 +68,12 @@ namespace Robot.Tests
 
             ((CommunicationObject) sender).Dispose();
 
-            // Console.WriteLine(BitConverter.ToString(corectResult));
-            // Console.WriteLine(BitConverter.ToString(instructionPacket.ToByte()));
         }
 
         [Test, Ignore("Ned to be connected to robot")]
         public void CanSendInstructionPacketPingToServoID1()
         {
-            ISender sender = new CommunicationObject();
+            ISender sender = new CommunicationObject("COM5");
             var ping = new InstructionPacketPing(SERVO_ID, sender);
 
             ping.Send();
@@ -87,7 +85,7 @@ namespace Robot.Tests
         public void MakeQuiet()
         {
             var ids = new byte[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18};
-            ISender sender = new CommunicationObject();
+            ISender sender = new CommunicationObject("COM5");
             var punch = new InstructionPacketSyncPunch(sender, ids);
             punch.Send();
 

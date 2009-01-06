@@ -167,25 +167,12 @@ namespace Robot.Tests
             Assert.AreEqual(0x050, BitConverter.ToInt16(movmentInBytes.ToArray(), 3));
         }
 
-        [Test]
-        public void test()
-        {
-            double i = Math.Atan2(-5, 5);
-            double i2 = Math.Atan2(5, -5); 
-            double i3 = Math.Atan(5.0/-5.0); 
-            double i4 = Math.Atan(-5.0/5); 
-      
-
-        }
-
-
-        
 
         [Test, Ignore("Ned to be connected to robot")]
         public void MoveBodyToStartPosition()
          {
-            ISender sender = new CommunicationObject();
-            Phoenix phoenix = RobotFactory.CreatePhoenix();
+            ISender sender = new CommunicationObject("COM5");
+            Phoenix phoenix = RobotFactory.CreatePhoenix(HomePositionFactory.CreateHomePosition());
 
 
             var movments = phoenix.GetMovements();
@@ -200,8 +187,8 @@ namespace Robot.Tests
         [Test, Ignore("Ned to be connected to robot")]
         public void MoveBodyToStartPosition2()
         {
-            ISender sender = new CommunicationObject();
-            Phoenix phoenix = RobotFactory.CreatePhoenix2();
+            ISender sender = new CommunicationObject("COM5");
+            Phoenix phoenix = RobotFactory.CreatePhoenix(HomePositionFactory.CreateHomePosition2());
 
 
             var movments = phoenix.GetMovements();
@@ -215,8 +202,8 @@ namespace Robot.Tests
         [Test, Ignore("Ned to be connected to robot")]
         public void MoveBodyToStartPosition3()
         {
-            ISender sender = new CommunicationObject();
-            Phoenix phoenix = RobotFactory.CreatePhoenix3();
+            ISender sender = new CommunicationObject("COM5");
+            Phoenix phoenix = RobotFactory.CreatePhoenix(HomePositionFactory.CreateHomePosition4());
 
 
             var movments = phoenix.GetMovements();
@@ -249,8 +236,8 @@ namespace Robot.Tests
         [Test, Ignore("Ned to be connected to robot")]
         public void MoveBody5cmFovard()
         {
-            ISender sender = new CommunicationObject();
-            Phoenix phoenix = RobotFactory.CreatePhoenix();
+            ISender sender = new CommunicationObject("COM5");
+            Phoenix phoenix = RobotFactory.CreatePhoenix(HomePositionFactory.CreateHomePosition());
             phoenix.GetMovements();
 
             phoenix.MoveBody(5,90);
@@ -267,8 +254,8 @@ namespace Robot.Tests
         [Test, Ignore("Ned to be connected to robot")]
         public void MoveBody5cmBack()
         {
-            ISender sender = new CommunicationObject();
-            Phoenix phoenix = RobotFactory.CreatePhoenix();
+            ISender sender = new CommunicationObject("COM5");
+            Phoenix phoenix = RobotFactory.CreatePhoenix(HomePositionFactory.CreateHomePosition());
             phoenix.GetMovements();
             phoenix.MoveBody(-5, 90);
 
@@ -284,8 +271,8 @@ namespace Robot.Tests
         [Test, Ignore("Ned to be connected to robot")]
         public void RotateBody15degresCW()
         {
-            ISender sender = new CommunicationObject();
-            Phoenix phoenix = RobotFactory.CreatePhoenix();
+            ISender sender = new CommunicationObject("COM5");
+            Phoenix phoenix = RobotFactory.CreatePhoenix(HomePositionFactory.CreateHomePosition());
             phoenix.RotateBody(40,1);
 
             var movments = phoenix.GetMovements();
@@ -300,8 +287,8 @@ namespace Robot.Tests
         [Test, Ignore("Ned to be connected to robot")]
         public void RotateBody15degresCCW()
         {
-            ISender sender = new CommunicationObject();
-            Phoenix phoenix = RobotFactory.CreatePhoenix();
+            ISender sender = new CommunicationObject("COM5");
+            Phoenix phoenix = RobotFactory.CreatePhoenix(HomePositionFactory.CreateHomePosition());
             phoenix.RotateBody(-15, -1);
 
             var movments = phoenix.GetMovements();
@@ -316,9 +303,9 @@ namespace Robot.Tests
         [Test, Ignore("Ned to be connected to robot")]
         public void CanWakeForward()
         {
-            ISender sender = new CommunicationObject();
-            HomePosition homePosition = RobotFactory.CreateHomePosition();
-            Phoenix phoenix = RobotFactory.CreatePhoenix();
+            ISender sender = new CommunicationObject("COM5");
+            HomePosition homePosition = HomePositionFactory.CreateHomePosition();
+            Phoenix phoenix = RobotFactory.CreatePhoenix(HomePositionFactory.CreateHomePosition());
 
             RippelGate6 rippelGate6 = new RippelGate6(phoenix, homePosition);
             for (int i = 0; i < 24; i++)
@@ -336,9 +323,9 @@ namespace Robot.Tests
         [Test, Ignore("Ned to be connected to robot")]
         public void CanWakeFastForward()
         {
-            ISender sender = new CommunicationObject();
-            HomePosition homePosition = RobotFactory.CreateHomePosition();
-            Phoenix phoenix = RobotFactory.CreatePhoenix();
+            ISender sender = new CommunicationObject("COM5");
+            HomePosition homePosition = HomePositionFactory.CreateHomePosition();
+            Phoenix phoenix = RobotFactory.CreatePhoenix(HomePositionFactory.CreateHomePosition());
 
             RippelGate6 rippelGate6 = new RippelGate6(phoenix, homePosition);
             for (int i = 0; i < 24; i++)
@@ -357,9 +344,9 @@ namespace Robot.Tests
         [Test, Ignore("Ned to be connected to robot")]
         public void CanWakeSideways()
         {
-            ISender sender = new CommunicationObject();
-            HomePosition homePosition = RobotFactory.CreateHomePosition();
-            Phoenix phoenix = RobotFactory.CreatePhoenix();
+            ISender sender = new CommunicationObject("COM5");
+            HomePosition homePosition = HomePositionFactory.CreateHomePosition();
+            Phoenix phoenix = RobotFactory.CreatePhoenix(HomePositionFactory.CreateHomePosition());
 
             RippelGate6 rippelGate6 = new RippelGate6(phoenix, homePosition);
             for (int i = 0; i < 24; i++)
@@ -377,9 +364,9 @@ namespace Robot.Tests
         [Test, Ignore("Ned to be connected to robot")]
         public void CanTurnCW()
         {
-            ISender sender = new CommunicationObject();
-            HomePosition homePosition = RobotFactory.CreateHomePosition();
-            Phoenix phoenix = RobotFactory.CreatePhoenix();
+            ISender sender = new CommunicationObject("COM5");
+            HomePosition homePosition = HomePositionFactory.CreateHomePosition();
+            Phoenix phoenix = RobotFactory.CreatePhoenix(HomePositionFactory.CreateHomePosition());
 
             RippelGate6 rippelGate6 = new RippelGate6(phoenix, homePosition);
             for (int i = 0; i < 24; i++)
@@ -398,9 +385,9 @@ namespace Robot.Tests
         [Test, Ignore("Ned to be connected to robot")]
         public void CanTurnCWZ30()
         {
-            ISender sender = new CommunicationObject();
-            HomePosition homePosition = RobotFactory.CreateHomePosition();
-            Phoenix phoenix = RobotFactory.CreatePhoenix();
+            ISender sender = new CommunicationObject("COM5");
+            HomePosition homePosition = HomePositionFactory.CreateHomePosition();
+            Phoenix phoenix = RobotFactory.CreatePhoenix(HomePositionFactory.CreateHomePosition());
 
             RippelGate6 rippelGate6 = new RippelGate6(phoenix, homePosition);
             for (int i = 0; i < 24; i++)
@@ -419,9 +406,9 @@ namespace Robot.Tests
          [Test, Ignore("Ned to be connected to robot")]
         public void CanCalculateRippelGate6()
          {
-             ISender sender = new CommunicationObject();
-             HomePosition homePosition = RobotFactory.CreateHomePosition();
-             Phoenix phoenix = RobotFactory.CreatePhoenix();
+             ISender sender = new CommunicationObject("COM5");
+             HomePosition homePosition = HomePositionFactory.CreateHomePosition();
+             Phoenix phoenix = RobotFactory.CreatePhoenix(HomePositionFactory.CreateHomePosition());
              
              RippelGate6 rippelGate6 = new RippelGate6(phoenix, homePosition);
              for (int i = 0; i < 20; i++)

@@ -18,22 +18,6 @@ namespace Robot
         private int lrlStep;
         private int step;
 
-        public RippelGate6()
-        {
-            for (int i = 0; i < _movments.Length; i++)
-            {
-                _movments[i] = new List<MovmentComandAX12>();
-            }
-
-            rflStep = 5;
-            rmlStep = 1;
-            rrlStep = 3;
-            lflStep = 2;
-            lmlStep = 4;
-            lrlStep = 0;
-            step = 0;
-        }
-
         public RippelGate6(Phoenix phoenix, HomePosition homePosition)
         {
             _phoenix = phoenix;
@@ -68,12 +52,12 @@ namespace Robot
         {
             try
             {
-                _movments[addStep(rflStep)].AddRange(phoenix.rfl.GetMovements());
-                _movments[addStep(rmlStep)].AddRange(phoenix.rml.GetMovements());
-                _movments[addStep(rrlStep)].AddRange(phoenix.rrl.GetMovements());
-                _movments[addStep(lflStep)].AddRange(phoenix.lfl.GetMovements());
-                _movments[addStep(lmlStep)].AddRange(phoenix.lml.GetMovements());
-                _movments[addStep(lrlStep)].AddRange(phoenix.lrl.GetMovements());
+                _movments[addStep(rflStep)].AddRange(phoenix.RightFrontLeg.GetMovements());
+                _movments[addStep(rmlStep)].AddRange(phoenix.RightMiddleLeg.GetMovements());
+                _movments[addStep(rrlStep)].AddRange(phoenix.RightRearLeg.GetMovements());
+                _movments[addStep(lflStep)].AddRange(phoenix.LeftFrontLeg.GetMovements());
+                _movments[addStep(lmlStep)].AddRange(phoenix.LeftMiddleLeg.GetMovements());
+                _movments[addStep(lrlStep)].AddRange(phoenix.LeftRearLeg.GetMovements());
                 step++;
             }
             catch (Exception e)
@@ -90,29 +74,6 @@ namespace Robot
             return (p + step) % 6;
         }
 
-        public static RippelGate6 CreateRippelGate6(Phoenix phoenix, double stepValue, double direction)
-        {
-
-            RippelGate6 rippelGate6 = new RippelGate6();
-            phoenix.MoveBody(-stepValue * 2, direction);
-            rippelGate6.AddPosision(phoenix);
-            phoenix.MoveBody(stepValue, direction);
-            rippelGate6.AddPosision(phoenix);
-            phoenix.MoveBody(stepValue, direction);
-            rippelGate6.AddPosision(phoenix);
-            phoenix.MoveBody(stepValue, direction);
-            rippelGate6.AddPosision(phoenix);
-            phoenix.MoveBody(stepValue, direction);
-            rippelGate6.AddPosision(phoenix);
-            phoenix.MoveBody(-stepValue * 2, direction, 8);
-            rippelGate6.AddPosision(phoenix);
-
-            return rippelGate6;
-        }
-
-
-
-        
 
         private FromPoint GetFromPoint(LegPosition homeLegPosition, int startPosition, Leg leg)
         {
@@ -258,18 +219,18 @@ namespace Robot
 
         public MovmentComandAX12[] NextSequenceRotation(double stepValue, double centerX, double centerZ)
         {
-            CalculateNextStepRotation(_phoenix.lfl, GetDegrees(lflStep, stepValue), GetYDistance(_stepHeight, lflStep),
-                                      GetFromPoint(_homePosition.lfl, lflStep, _phoenix.lfl), centerX, centerZ);
-            CalculateNextStepRotation(_phoenix.rfl, GetDegrees(rflStep, stepValue), GetYDistance(_stepHeight, rflStep),
-                                      GetFromPoint(_homePosition.rfl, rflStep, _phoenix.rfl), centerX, centerZ);
-            CalculateNextStepRotation(_phoenix.lml, GetDegrees(lmlStep, stepValue), GetYDistance(_stepHeight, lmlStep),
-                                      GetFromPoint(_homePosition.lml, lmlStep, _phoenix.lml), centerX, centerZ);
-            CalculateNextStepRotation(_phoenix.rml, GetDegrees(rmlStep, stepValue), GetYDistance(_stepHeight, rmlStep),
-                                      GetFromPoint(_homePosition.rml, rmlStep, _phoenix.rml), centerX, centerZ);
-            CalculateNextStepRotation(_phoenix.lrl, GetDegrees(lrlStep, stepValue), GetYDistance(_stepHeight, lrlStep),
-                                      GetFromPoint(_homePosition.lrl, lrlStep, _phoenix.lrl), centerX, centerZ);
-            CalculateNextStepRotation(_phoenix.rrl, GetDegrees(rrlStep, stepValue), GetYDistance(_stepHeight, rrlStep),
-                                      GetFromPoint(_homePosition.rrl, rrlStep, _phoenix.rrl), centerX, centerZ);
+            CalculateNextStepRotation(_phoenix.LeftFrontLeg, GetDegrees(lflStep, stepValue), GetYDistance(_stepHeight, lflStep),
+                                      GetFromPoint(_homePosition.LeftFrontLeg, lflStep, _phoenix.LeftFrontLeg), centerX, centerZ);
+            CalculateNextStepRotation(_phoenix.RightFrontLeg, GetDegrees(rflStep, stepValue), GetYDistance(_stepHeight, rflStep),
+                                      GetFromPoint(_homePosition.RightFrontLeg, rflStep, _phoenix.RightFrontLeg), centerX, centerZ);
+            CalculateNextStepRotation(_phoenix.LeftMiddleLeg, GetDegrees(lmlStep, stepValue), GetYDistance(_stepHeight, lmlStep),
+                                      GetFromPoint(_homePosition.LeftMiddleLeg, lmlStep, _phoenix.LeftMiddleLeg), centerX, centerZ);
+            CalculateNextStepRotation(_phoenix.RightMiddleLeg, GetDegrees(rmlStep, stepValue), GetYDistance(_stepHeight, rmlStep),
+                                      GetFromPoint(_homePosition.RightMiddleLeg, rmlStep, _phoenix.RightMiddleLeg), centerX, centerZ);
+            CalculateNextStepRotation(_phoenix.LeftRearLeg, GetDegrees(lrlStep, stepValue), GetYDistance(_stepHeight, lrlStep),
+                                      GetFromPoint(_homePosition.LeftRearLeg, lrlStep, _phoenix.LeftRearLeg), centerX, centerZ);
+            CalculateNextStepRotation(_phoenix.RightRearLeg, GetDegrees(rrlStep, stepValue), GetYDistance(_stepHeight, rrlStep),
+                                      GetFromPoint(_homePosition.RightRearLeg, rrlStep, _phoenix.RightRearLeg), centerX, centerZ);
 
             step++;
             return _phoenix.GetMovements();
@@ -279,12 +240,12 @@ namespace Robot
 
         public MovmentComandAX12[] NextSequence(double direction, double stepValue)
         {
-            CalculateNextStep(_phoenix.lfl, direction, GetXDistance(stepValue, lflStep), GetYDistance(_stepHeight, lflStep), GetFromPoint(_homePosition.lfl, lflStep, _phoenix.lfl));
-            CalculateNextStep(_phoenix.rfl, direction, GetXDistance(stepValue, rflStep), GetYDistance(_stepHeight, rflStep), GetFromPoint(_homePosition.rfl, rflStep, _phoenix.rfl));
-            CalculateNextStep(_phoenix.lml, direction, GetXDistance(stepValue, lmlStep), GetYDistance(_stepHeight, lmlStep), GetFromPoint(_homePosition.lml, lmlStep, _phoenix.lml));
-            CalculateNextStep(_phoenix.rml, direction, GetXDistance(stepValue, rmlStep), GetYDistance(_stepHeight, rmlStep), GetFromPoint(_homePosition.rml, rmlStep, _phoenix.rml));
-            CalculateNextStep(_phoenix.lrl, direction, GetXDistance(stepValue, lrlStep), GetYDistance(_stepHeight, lrlStep), GetFromPoint(_homePosition.lrl, lrlStep, _phoenix.lrl));
-            CalculateNextStep(_phoenix.rrl, direction, GetXDistance(stepValue, rrlStep), GetYDistance(_stepHeight, rrlStep), GetFromPoint(_homePosition.rrl, rrlStep, _phoenix.rrl));
+            CalculateNextStep(_phoenix.LeftFrontLeg, direction, GetXDistance(stepValue, lflStep), GetYDistance(_stepHeight, lflStep), GetFromPoint(_homePosition.LeftFrontLeg, lflStep, _phoenix.LeftFrontLeg));
+            CalculateNextStep(_phoenix.RightFrontLeg, direction, GetXDistance(stepValue, rflStep), GetYDistance(_stepHeight, rflStep), GetFromPoint(_homePosition.RightFrontLeg, rflStep, _phoenix.RightFrontLeg));
+            CalculateNextStep(_phoenix.LeftMiddleLeg, direction, GetXDistance(stepValue, lmlStep), GetYDistance(_stepHeight, lmlStep), GetFromPoint(_homePosition.LeftMiddleLeg, lmlStep, _phoenix.LeftMiddleLeg));
+            CalculateNextStep(_phoenix.RightMiddleLeg, direction, GetXDistance(stepValue, rmlStep), GetYDistance(_stepHeight, rmlStep), GetFromPoint(_homePosition.RightMiddleLeg, rmlStep, _phoenix.RightMiddleLeg));
+            CalculateNextStep(_phoenix.LeftRearLeg, direction, GetXDistance(stepValue, lrlStep), GetYDistance(_stepHeight, lrlStep), GetFromPoint(_homePosition.LeftRearLeg, lrlStep, _phoenix.LeftRearLeg));
+            CalculateNextStep(_phoenix.RightRearLeg, direction, GetXDistance(stepValue, rrlStep), GetYDistance(_stepHeight, rrlStep), GetFromPoint(_homePosition.RightRearLeg, rrlStep, _phoenix.RightRearLeg));
 
 
             step++;

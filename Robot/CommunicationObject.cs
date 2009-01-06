@@ -5,30 +5,27 @@ namespace Robot
 {
     public class CommunicationObject : ISender, IDisposable
     {
-        private static readonly SerialPort _comport = new SerialPort();
+        private static readonly SerialPort _comPort = new SerialPort();
 
-        public CommunicationObject()
+        public CommunicationObject(string comPortName)
         {
-            SetupComport();
-            //foreach(string s in SerialPort.GetPortNames())
-            //{
-
-            //}
+            SetupComport(comPortName);
+           
 
             // When data is recieved through the port, call this method
-            // _comport.DataReceived += new SerialDataReceivedEventHandler(port_DataReceived);
+            // _comPort.DataReceived += new SerialDataReceivedEventHandler(port_DataReceived);
         }
 
         public bool IsOpen
         {
-            get { return _comport.IsOpen; }
+            get { return _comPort.IsOpen; }
         }
 
         #region IDisposable Members
 
         public void Dispose()
         {
-            _comport.Close();
+            _comPort.Close();
         }
 
         #endregion
@@ -41,23 +38,20 @@ namespace Robot
             {
                 Open();
             }
-            _comport.Write(bytes, 0, bytes.Length);
+            _comPort.Write(bytes, 0, bytes.Length);
         }
 
         #endregion
 
-        private void SetupComport()
+        private void SetupComport(string comPortName)
         {
-            _comport.BaudRate = 1000000;
-            _comport.PortName = "COM5"; //Behövs nog hämtas från config
-
-            // Open the port
-            //comport.Open();
+            _comPort.BaudRate = 1000000;
+            _comPort.PortName = comPortName;
         }
 
         public void Open()
         {
-            _comport.Open();
+            _comPort.Open();
         }
     }
 }

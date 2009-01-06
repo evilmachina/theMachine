@@ -5,49 +5,49 @@ namespace Robot
 {
     public class Phoenix  
     {
-        private Leg _lfl;
-        private Leg _rfl;
-        private Leg _lml;
-        private Leg _rml;
-        private Leg _lrl;
-        private Leg _rrl;
+        private Leg _leftFrontLeg;
+        private Leg _rightFrontLeg;
+        private Leg _leftMiddleLeg;
+        private Leg _rightMiddleLeg;
+        private Leg _leftRearLeg;
+        private Leg _rightRearLeg;
         private double _xCenter;
         private double _yCenter;
 
-        public Leg lfl
+        public Leg LeftFrontLeg
         {
-            get { return _lfl; }
-            set { _lfl = value; }
+            get { return _leftFrontLeg; }
+            set { _leftFrontLeg = value; }
         }
 
-        public Leg rfl
+        public Leg RightFrontLeg
         {
-            get { return _rfl; }
-            set { _rfl = value; }
+            get { return _rightFrontLeg; }
+            set { _rightFrontLeg = value; }
         }
 
-        public Leg lml
+        public Leg LeftMiddleLeg
         {
-            get { return _lml; }
-            set { _lml = value; }
+            get { return _leftMiddleLeg; }
+            set { _leftMiddleLeg = value; }
         }
 
-        public Leg rml
+        public Leg RightMiddleLeg
         {
-            get { return _rml; }
-            set { _rml = value; }
+            get { return _rightMiddleLeg; }
+            set { _rightMiddleLeg = value; }
         }
 
-        public Leg lrl
+        public Leg LeftRearLeg
         {
-            get { return _lrl; }
-            set { _lrl = value; }
+            get { return _leftRearLeg; }
+            set { _leftRearLeg = value; }
         }
 
-        public Leg rrl
+        public Leg RightRearLeg
         {
-            get { return _rrl; }
-            set { _rrl = value; }
+            get { return _rightRearLeg; }
+            set { _rightRearLeg = value; }
         }
 
         public void MoveBody(double distance, double direction)
@@ -57,35 +57,35 @@ namespace Robot
 
         public void MoveBody(double distance, double direction, double yDistance)
         {
-            Leg.CalculateNewPosition(lfl, distance, direction, yDistance);
-            Leg.CalculateNewPosition(rfl, distance, direction, yDistance);
-            Leg.CalculateNewPosition(lml, distance, direction, yDistance);
-            Leg.CalculateNewPosition(rml, distance, direction, yDistance);
-            Leg.CalculateNewPosition(lrl, distance, direction, yDistance);
-            Leg.CalculateNewPosition(rrl, distance, direction, yDistance);
+            Leg.CalculateNewPosition(LeftFrontLeg, distance, direction, yDistance);
+            Leg.CalculateNewPosition(RightFrontLeg, distance, direction, yDistance);
+            Leg.CalculateNewPosition(LeftMiddleLeg, distance, direction, yDistance);
+            Leg.CalculateNewPosition(RightMiddleLeg, distance, direction, yDistance);
+            Leg.CalculateNewPosition(LeftRearLeg, distance, direction, yDistance);
+            Leg.CalculateNewPosition(RightRearLeg, distance, direction, yDistance);
         }
 
         public MovmentComandAX12[] GetMovements()
         {
             var movements = new List<MovmentComandAX12>();
-            movements.AddRange(lfl.GetMovements());
-            movements.AddRange(rfl.GetMovements());
-            movements.AddRange(lml.GetMovements());
-            movements.AddRange(rml.GetMovements());
-            movements.AddRange(lrl.GetMovements());
-            movements.AddRange(rrl.GetMovements());
+            movements.AddRange(LeftFrontLeg.GetMovements());
+            movements.AddRange(RightFrontLeg.GetMovements());
+            movements.AddRange(LeftMiddleLeg.GetMovements());
+            movements.AddRange(RightMiddleLeg.GetMovements());
+            movements.AddRange(LeftRearLeg.GetMovements());
+            movements.AddRange(RightRearLeg.GetMovements());
 
             return movements.ToArray();
         }
 
         public void RotateBody(double degrees, double direction)
         {
-           Leg.RotateLeg(lfl, degrees, direction, _xCenter , _yCenter);
-           Leg.RotateLeg(rfl, degrees, direction, _xCenter, _yCenter);
-           Leg.RotateLeg(lml, degrees, direction, _xCenter, _yCenter);
-           Leg.RotateLeg(rml, degrees, direction, _xCenter, _yCenter);
-           Leg.RotateLeg(lrl, degrees, direction, _xCenter, _yCenter);
-           Leg.RotateLeg(rrl, degrees, direction, _xCenter, _yCenter);
+           Leg.RotateLeg(LeftFrontLeg, degrees, direction, _xCenter , _yCenter);
+           Leg.RotateLeg(RightFrontLeg, degrees, direction, _xCenter, _yCenter);
+           Leg.RotateLeg(LeftMiddleLeg, degrees, direction, _xCenter, _yCenter);
+           Leg.RotateLeg(RightMiddleLeg, degrees, direction, _xCenter, _yCenter);
+           Leg.RotateLeg(LeftRearLeg, degrees, direction, _xCenter, _yCenter);
+           Leg.RotateLeg(RightRearLeg, degrees, direction, _xCenter, _yCenter);
         }
     }
 }

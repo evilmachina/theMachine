@@ -1,106 +1,39 @@
-using System;
-
 namespace Robot
 {
     public class RobotFactory
     {
-        public static Phoenix CreatePhoenix()
+        public static Phoenix CreatePhoenix(HomePosition startPosition)
         {
-            var Y = 10.4;
             Phoenix phoenix = new Phoenix
                                   {
-                                      lfl = createLeg(Side.Left, Position.Front, 60, 1, 3, 5, 5.7, Y, -9.8726896031426, 4.3, -8.2),
-                                      rfl = createLeg(Side.Right, Position.Front, -60, 2, 4, 6, -5.7, Y, -9.8726896031426, -4.3, -8.2),
-                                      lml = createLeg(Side.Left, Position.Middle, 0, 7, 9, 11, 11.4, Y, 0.0, 6.3, 0),
-                                      rml = createLeg(Side.Right, Position.Middle, 0, 8, 10, 12, -11.4, Y, 0.0, -6.3, 0),
-                                      lrl = createLeg(Side.Left, Position.Rear, -60, 13, 15, 17, 5.7, Y, 9.8726896031426, 4.3, 8.2),
-                                      rrl = createLeg(Side.Right, Position.Rear, 60, 14, 16, 18, -5.7, Y, 9.8726896031426, -4.3, 8.2)
+                                      LeftFrontLeg = createLeg(Side.Left, Position.Front, 60, 1, 3, 5, 4.3, -8.2, startPosition.LeftFrontLeg),
+                                      RightFrontLeg = createLeg(Side.Right, Position.Front, -60, 2, 4, 6, -4.3, -8.2, startPosition.RightFrontLeg),
+                                      LeftMiddleLeg = createLeg(Side.Left, Position.Middle, 0, 7, 9, 11, 6.3, 0, startPosition.LeftMiddleLeg),
+                                      RightMiddleLeg = createLeg(Side.Right, Position.Middle, 0, 8, 10, 12, -6.3, 0, startPosition.RightMiddleLeg),
+                                      LeftRearLeg = createLeg(Side.Left, Position.Rear, -60, 13, 15, 17, 4.3, 8.2, startPosition.LeftRearLeg),
+                                      RightRearLeg = createLeg(Side.Right, Position.Rear, 60, 14, 16, 18, -4.3, 8.2, startPosition.RightRearLeg)
                                   };
-           phoenix.MoveBody(0,90);// calculates start posisions for angles
-            return phoenix;
-        }
-
-        public static Phoenix CreatePhoenix2()
-        {
-            var Y = 10.4;
-            Phoenix phoenix = new Phoenix
-            {
-                lfl = createLeg(Side.Left, Position.Front, -60, 1, 3, 5, 11.4, Y, 0, 4.3, -8.2),
-                rfl = createLeg(Side.Right, Position.Front, 60, 2, 4, 6, -11.4, Y, 0, -4.3, -8.2),
-                lml = createLeg(Side.Left, Position.Middle, 0, 7, 9, 11, 11.4, Y, 0.0, 6.3, 0),
-                rml = createLeg(Side.Right, Position.Middle, 0, 8, 10, 12, -11.4, Y, 0.0, -6.3, 0),
-                lrl = createLeg(Side.Left, Position.Rear, 60, 13, 15, 17, 11.4, Y, 0, 4.3, 8.2),
-                rrl = createLeg(Side.Right, Position.Rear, -60, 14, 16, 18, -11.4, Y, 0, -4.3, 8.2)
-            };
             phoenix.MoveBody(0, 90);// calculates start posisions for angles
             return phoenix;
         }
 
-        public static Phoenix CreatePhoenix3()
-        {
-            var Y = 1.2;
-            Phoenix phoenix = new Phoenix
-            {
-                lfl = createLeg(Side.Left, Position.Front, -60, 1, 3, 5, 5.7, Y, -9.8726896031426, 4.3, -8.2),
-                rfl = createLeg(Side.Right, Position.Front, 60, 2, 4, 6, -5.7, Y, -9.8726896031426, -4.3, -8.2),
-                lml = createLeg(Side.Left, Position.Middle, 0, 7, 9, 11, 11.4, Y, 0.0, 6.3, 0),
-                rml = createLeg(Side.Right, Position.Middle, 0, 8, 10, 12, -11.4, Y, 0.0, -6.3, 0),
-                lrl = createLeg(Side.Left, Position.Rear, 60, 13, 15, 17, 5.7, Y, 9.8726896031426, 4.3, 8.2),
-                rrl = createLeg(Side.Right, Position.Rear, -60, 14, 16, 18, -5.7, Y, 9.8726896031426, -4.3, 8.2)
-            };
-            phoenix.MoveBody(0, 90);// calculates start posisions for angles
-            return phoenix;
-        }
-
-        protected internal static Leg createLeg(Side side, Position position, double legOffset, short coxaId, short femurId, short tibiaId, double X, double Y, double Z, double distanceToX, double distanceToZ)
+        protected internal static Leg createLeg(Side side, Position position, double legOffset, short coxaId, short femurId, short tibiaId, double distanceToX, double distanceToZ, LegPosition legPosition)
         {
             Leg leg = new Leg(distanceToX, distanceToZ)
                           {
                               Side = side,
                               Position = position,
                               Offset = legOffset,
-                              X = X,
-                              Y = Y,
-                              Z = Z,
+                              X = legPosition.X,
+                              Y = legPosition.Y,
+                              Z = legPosition.Z,
                               Coxa = new Coxa(3.8, legOffset, coxaId, 0, 0, side),
                               Femur = new Femur(7.6, -90, femurId, 0, 0, side),
                               Tibia = new Tibia(10.4, 120, tibiaId, 0, 0, side)
                           };
 
             return leg;
-            
-        }
 
-        public static HomePosition CreateHomePosition2()
-        {
-            var Y = 10.4;
-            HomePosition homePosition = new HomePosition
-            {
-                lfl = new LegPosition(11.4, Y, 0.0),
-                rfl = new LegPosition(-11.4, Y, 0.0),
-                lml = new LegPosition(11.4, Y, 0.0),
-                rml = new LegPosition(-11.4, Y, 0.0),
-                lrl = new LegPosition(11.4, Y, 0.0),
-                rrl = new LegPosition(-11.4, Y, 0.0)
-            };
-            return homePosition;
         }
-
-        public static HomePosition CreateHomePosition()
-        {
-            var Y = 5;
-            HomePosition homePosition = new HomePosition
-                                            {
-                                                lfl = new LegPosition(5.7, Y, -9.8726896031426),
-                                                rfl = new LegPosition(-5.7, Y, -9.8726896031426),
-                                                lml = new LegPosition(11.4, Y, 0.0),
-                                                rml = new LegPosition(-11.4, Y, 0.0),
-                                                lrl = new LegPosition(5.7, Y, 9.8726896031426),
-                                                rrl = new LegPosition(-5.7, Y, 9.8726896031426)
-                                            };
-            return homePosition;
-        }
-
-       
     }
 }
