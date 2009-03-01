@@ -17,7 +17,7 @@ namespace Robot.Tests
             double Y = 10.4;
 
             JointAngeles jointAngeles = IK.CalculateIK(coxaLength, femurLength, tibiaLength, X, Y);
-            Assert.AreEqual(90, jointAngeles.FemurAngle);
+            Assert.AreEqual(90, jointAngeles.FemurAngle,2);
             Assert.AreEqual(90, jointAngeles.TibiaAngle);
         }
     

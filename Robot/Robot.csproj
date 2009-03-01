@@ -71,11 +71,12 @@
     <Compile Include="HomePositionFactory.cs" />
     <Compile Include="IK.cs" />
     <Compile Include="ILeg.cs" />
-    <Compile Include="InstructionPacketBase.cs" />
-    <Compile Include="InstructionPacketPing.cs" />
-    <Compile Include="InstructionPacketSyncCOMPLIANCE_MARGIN.cs" />
-    <Compile Include="InstructionPacketSyncMovment.cs" />
-    <Compile Include="InstructionPacketSyncPunch.cs" />
+    <Compile Include="InstructionPackets\InstructionPacketBase.cs" />
+    <Compile Include="InstructionPackets\InstructionPacketPing.cs" />
+    <Compile Include="InstructionPackets\InstructionPacketReadTemperature.cs" />
+    <Compile Include="InstructionPackets\InstructionPacketSyncCOMPLIANCE_MARGIN.cs" />
+    <Compile Include="InstructionPackets\InstructionPacketSyncMovment.cs" />
+    <Compile Include="InstructionPackets\InstructionPacketSyncPunch.cs" />
     <Compile Include="ISender.cs" />
     <Compile Include="JointAngeles.cs" />
     <Compile Include="Leg.cs" />
@@ -87,11 +88,13 @@
     <Compile Include="RippelGate6.cs" />
     <Compile Include="RobotFactory.cs" />
     <Compile Include="ServoBase.cs" />
+    <Compile Include="StatusPacketes\StatusPacket.cs" />
     <Compile Include="Tests\ConnectTest.cs" />
     <Compile Include="Tests\IKTests.cs" />
     <Compile Include="Tests\MovmentTest.cs" />
     <Compile Include="Tests\RobotTest.cs" />
     <Compile Include="Side.cs" />
+    <Compile Include="Tests\SennsorTests.cs" />
     <Compile Include="Tibia.cs" />
   </ItemGroup>
   <ItemGroup>

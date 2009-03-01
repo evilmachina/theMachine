@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Windows.Forms;
 using Robot;
+using Robot.InstructionPackets;
 
 
 namespace GUI

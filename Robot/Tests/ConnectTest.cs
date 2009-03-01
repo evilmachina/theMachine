@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using Robot.InstructionPackets;
 using TestProj;
 
 namespace Robot.Tests
@@ -7,8 +8,8 @@ namespace Robot.Tests
     public class ConnectTest
     {
         private const int SERVO_ID = 1;
-
-        [Test, Ignore("Ned to be connected to robot")]
+        
+        [Test]
         public void CanCreateInstructionPacketForPingId1()
         {
             ISender sender = new FakeSender();
@@ -25,7 +26,7 @@ namespace Robot.Tests
             Assert.AreEqual(corectResult, instructionPacket.ToByte());
         }
 
-        [Test, Ignore("Ned to be connected to robot")]
+        [Test]
         public void CanCreateInstructionPacketForSyncedMovment()
         {
             ISender sender = new FakeSender();
