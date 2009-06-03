@@ -73,6 +73,7 @@
     <Compile Include="ILeg.cs" />
     <Compile Include="InstructionPackets\InstructionPacketBase.cs" />
     <Compile Include="InstructionPackets\InstructionPacketPing.cs" />
+    <Compile Include="InstructionPackets\InstructionPacketReadPresentLoad.cs" />
     <Compile Include="InstructionPackets\InstructionPacketReadTemperature.cs" />
     <Compile Include="InstructionPackets\InstructionPacketSyncCOMPLIANCE_MARGIN.cs" />
     <Compile Include="InstructionPackets\InstructionPacketSyncMovment.cs" />

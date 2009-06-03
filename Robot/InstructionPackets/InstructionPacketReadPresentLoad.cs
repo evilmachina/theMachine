@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2009 Marcus Olsson
+// Copyright (c) 2009 Marcus Olsson
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -18,20 +18,20 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 // 
-namespace Robot
+namespace Robot.InstructionPackets
 {
-    public class Tibia : ServoBase
+    public class InstructionPacketReadPresentLoad : InstructionPacketBase
     {
-        public Tibia(double length, double offset, short servoId, double minAngle, double maxAngle, Side side) : base(length, offset, servoId, minAngle, maxAngle, side)
-        {
-        }
+        private const byte ADDRESS_FOR_PRESENT_LOAD = 0x28;
+        private const byte LENGT_OF_DATA_TO_BE_READ = 0x02;
 
-        public override MovmentComandAX12 GetMovement()
+        public InstructionPacketReadPresentLoad(byte servoId, ISender sender)
+            : base(servoId, sender)
         {
-            short positon = 0;
-            positon = Convert((double)Side * (Angle - Offset));
-
-            return new MovmentComandAX12((byte)ServoId, positon, CalculateSpeed());
+            _instruction = 0x02;
+            _lengthOfCommand = 0x04;
+            _parameters.Add(ADDRESS_FOR_PRESENT_LOAD);
+            _parameters.Add(LENGT_OF_DATA_TO_BE_READ);
         }
     }
 }

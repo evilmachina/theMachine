@@ -1,3 +1,23 @@
+// Copyright (c) 2009 Marcus Olsson
+// 
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+// 
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+// 
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -9,7 +29,8 @@ namespace Robot.Tests
     [TestFixture]
     public class MovmentTest
     {
-  
+        private const string COMPORT = "COM5";
+
         [Test]
         public void CanGetMovementFromLeftTibiaZeroOffset()
         {
@@ -172,7 +193,7 @@ namespace Robot.Tests
         [Test, Ignore("Ned to be connected to robot")]
         public void MoveBodyToStartPosition()
          {
-            ISender sender = new CommunicationObject("COM5");
+            ISender sender = new CommunicationObject("COM4");
             Phoenix phoenix = RobotFactory.CreatePhoenix(HomePositionFactory.CreateHomePosition());
 
 
@@ -188,7 +209,7 @@ namespace Robot.Tests
         [Test, Ignore("Ned to be connected to robot")]
         public void MoveBodyToStartPosition2()
         {
-            ISender sender = new CommunicationObject("COM5");
+            ISender sender = new CommunicationObject(COMPORT);
             Phoenix phoenix = RobotFactory.CreatePhoenix(HomePositionFactory.CreateHomePosition2());
 
 
@@ -203,7 +224,7 @@ namespace Robot.Tests
         [Test, Ignore("Ned to be connected to robot")]
         public void MoveBodyToStartPosition3()
         {
-            ISender sender = new CommunicationObject("COM5");
+            ISender sender = new CommunicationObject(COMPORT);
             Phoenix phoenix = RobotFactory.CreatePhoenix(HomePositionFactory.CreateHomePosition4());
 
 
@@ -237,7 +258,7 @@ namespace Robot.Tests
         [Test, Ignore("Ned to be connected to robot")]
         public void MoveBody5cmFovard()
         {
-            ISender sender = new CommunicationObject("COM5");
+            ISender sender = new CommunicationObject(COMPORT);
             Phoenix phoenix = RobotFactory.CreatePhoenix(HomePositionFactory.CreateHomePosition());
             phoenix.GetMovements();
 
@@ -255,7 +276,7 @@ namespace Robot.Tests
         [Test, Ignore("Ned to be connected to robot")]
         public void MoveBody5cmBack()
         {
-            ISender sender = new CommunicationObject("COM5");
+            ISender sender = new CommunicationObject(COMPORT);
             Phoenix phoenix = RobotFactory.CreatePhoenix(HomePositionFactory.CreateHomePosition());
             phoenix.GetMovements();
             phoenix.MoveBody(-5, 90);
@@ -272,7 +293,7 @@ namespace Robot.Tests
         [Test, Ignore("Ned to be connected to robot")]
         public void RotateBody15degresCW()
         {
-            ISender sender = new CommunicationObject("COM5");
+            ISender sender = new CommunicationObject(COMPORT);
             Phoenix phoenix = RobotFactory.CreatePhoenix(HomePositionFactory.CreateHomePosition());
             phoenix.RotateBody(40,1);
 
@@ -288,7 +309,7 @@ namespace Robot.Tests
         [Test, Ignore("Ned to be connected to robot")]
         public void RotateBody15degresCCW()
         {
-            ISender sender = new CommunicationObject("COM5");
+            ISender sender = new CommunicationObject(COMPORT);
             Phoenix phoenix = RobotFactory.CreatePhoenix(HomePositionFactory.CreateHomePosition());
             phoenix.RotateBody(-15, -1);
 
@@ -304,7 +325,7 @@ namespace Robot.Tests
         [Test, Ignore("Ned to be connected to robot")]
         public void CanWakeForward()
         {
-            ISender sender = new CommunicationObject("COM5");
+            ISender sender = new CommunicationObject(COMPORT);
             HomePosition homePosition = HomePositionFactory.CreateHomePosition();
             Phoenix phoenix = RobotFactory.CreatePhoenix(HomePositionFactory.CreateHomePosition());
 
@@ -324,7 +345,7 @@ namespace Robot.Tests
         [Test, Ignore("Ned to be connected to robot")]
         public void CanWakeFastForward()
         {
-            ISender sender = new CommunicationObject("COM5");
+            ISender sender = new CommunicationObject(COMPORT);
             HomePosition homePosition = HomePositionFactory.CreateHomePosition();
             Phoenix phoenix = RobotFactory.CreatePhoenix(HomePositionFactory.CreateHomePosition());
 
@@ -345,7 +366,7 @@ namespace Robot.Tests
         [Test, Ignore("Ned to be connected to robot")]
         public void CanWakeSideways()
         {
-            ISender sender = new CommunicationObject("COM5");
+            ISender sender = new CommunicationObject(COMPORT);
             HomePosition homePosition = HomePositionFactory.CreateHomePosition();
             Phoenix phoenix = RobotFactory.CreatePhoenix(HomePositionFactory.CreateHomePosition());
 
@@ -365,7 +386,7 @@ namespace Robot.Tests
         [Test, Ignore("Ned to be connected to robot")]
         public void CanTurnCW()
         {
-            ISender sender = new CommunicationObject("COM5");
+            ISender sender = new CommunicationObject(COMPORT);
             HomePosition homePosition = HomePositionFactory.CreateHomePosition();
             Phoenix phoenix = RobotFactory.CreatePhoenix(HomePositionFactory.CreateHomePosition());
 
@@ -386,7 +407,7 @@ namespace Robot.Tests
         [Test, Ignore("Ned to be connected to robot")]
         public void CanTurnCWZ30()
         {
-            ISender sender = new CommunicationObject("COM5");
+            ISender sender = new CommunicationObject(COMPORT);
             HomePosition homePosition = HomePositionFactory.CreateHomePosition();
             Phoenix phoenix = RobotFactory.CreatePhoenix(HomePositionFactory.CreateHomePosition());
 
@@ -407,7 +428,7 @@ namespace Robot.Tests
          [Test, Ignore("Ned to be connected to robot")]
         public void CanCalculateRippelGate6()
          {
-             ISender sender = new CommunicationObject("COM5");
+             ISender sender = new CommunicationObject(COMPORT);
              HomePosition homePosition = HomePositionFactory.CreateHomePosition();
              Phoenix phoenix = RobotFactory.CreatePhoenix(HomePositionFactory.CreateHomePosition());
              
