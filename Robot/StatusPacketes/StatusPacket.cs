@@ -19,6 +19,7 @@
 // THE SOFTWARE.
 // 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace Robot.StatusPacketes
@@ -44,10 +45,15 @@ namespace Robot.StatusPacketes
             _lengthOfResult = receivedData[3];
             _error = receivedData[4];
 
-            _parameters.AddRange(receivedData.GetRange(5,_lengthOfResult - 2));
+            GetParameters(receivedData);
 
             _checkSum = receivedData[receivedData.Count-1];
 
+        }
+
+        private void GetParameters(List<byte> receivedData)
+        {
+            _parameters.AddRange(receivedData.GetRange(5,_lengthOfResult - 2));
         }
 
         public int StartByte1
@@ -88,6 +94,89 @@ namespace Robot.StatusPacketes
         public List<byte> ReceivedData
         {
             get { return _receivedData; }
+        }
+
+        public double Position
+        {
+            get { return CalculatePositon(); }
+        }
+
+        public double Speed
+        {
+            get { return CalculateSpeed(); }
+           
+        }
+
+        public Direction LoadDirection
+        {
+            get { return GetLoadDirection(); }
+        }
+
+        public short Load
+        {
+            get { return GetLoad(); }
+        }
+
+        public double Voltage
+        {
+            get {return GetVoltage(); }
+        }
+
+        public int Temperature
+        {
+            get { return GetTemperatureParameter(); }
+        }
+
+        private double GetVoltage()
+        {
+            return GetVoltageParameter()/10.0;
+        }
+
+        private short GetLoad()
+        {
+            return (short)(BitConverter.ToInt16(GetLoadParameters(), 0) & 0x3FF);
+        }
+
+        private Direction GetLoadDirection()
+        {
+            BitArray loadParametersAsBitArray = new BitArray(GetLoadParameters());
+            return loadParametersAsBitArray[10] ? Direction.Clockwise : Direction.Counterclockwise;
+        }
+
+        private double CalculateSpeed()
+        {
+            return BitConverter.ToInt16(GetSpeedParameters(), 0);
+        }
+
+        private double CalculatePositon()
+        {
+           short rawPositon = BitConverter.ToInt16(GetPositonParameters(), 0);
+           return (((double)300 / 0x3ff) * rawPositon) - 150; 
+        }
+
+        private byte[] GetPositonParameters()
+        {
+            return new[] {Parameters[0], Parameters[1]};
+        }
+
+        private byte[] GetSpeedParameters()
+        {
+            return new[] { Parameters[2], Parameters[3] };
+        }
+
+        private byte[] GetLoadParameters()
+        {
+            return new[] { Parameters[4], Parameters[5] };
+        }
+
+        private byte GetVoltageParameter()
+        {
+           return Parameters[6];
+        }
+
+        private byte GetTemperatureParameter()
+        {
+            return Parameters[7];
         }
     }
 }

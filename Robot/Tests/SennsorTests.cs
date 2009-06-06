@@ -18,6 +18,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 // 
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using NUnit.Framework;
@@ -103,6 +105,62 @@ namespace Robot.Tests
             Assert.AreEqual(corectResult, statusPacket.ReceivedData);
         }
 
+        [Test]
+        public void CanBuildInstructionForSensorData()
+        {
+            ISender sender = new FakeSender();
+            var corectResult = new byte[] { 0XFF, 0XFF, 0X01, 0X04, 0X02, 0X24, 0X08, 0XCC };
+            InstructionPacketBase instructionPacket = new InstructionPacketReadServoSensorData(SERVO_ID, sender);
+
+            Assert.AreEqual(0xFF, instructionPacket.StartByte1);
+            Assert.AreEqual(0xFF, instructionPacket.StartByte2);
+            Assert.AreEqual(0x01, instructionPacket.ServoId);
+            Assert.AreEqual(0x04, instructionPacket.LengthOfCommand);
+            Assert.AreEqual(0x02, instructionPacket.Instruction);
+            Assert.AreEqual(0xCC, instructionPacket.CheckSum);
+            Assert.AreEqual(corectResult, instructionPacket.ToByte());
+        }
+
+        [Test]
+        public void CanReadStatusPacketForSensorData()
+        {
+
+            List<byte> receivedData = new List<byte>
+                                          {
+                                              0xFF, //bytes indicate the start of the packet
+                                              0xFF, //bytes indicate the start of the packet
+                                              0x05, //ID
+                                              0x0A, //length
+                                              0x00, //Error
+                                              0x7F, //Present Position(L)
+                                              0x02, //Present Position(H)
+                                              0x04, //Present Speed(L)
+                                              0x04, //Present Speed(H)
+                                              0x05, //Present Load(L)
+                                              0x04, //Present Load(H)
+                                              0x7B, //Present Voltage
+                                              0x26, //Present Temperature
+                                              0xBD  //Checksum
+                                          };
+
+            StatusPacket statusPacket = new StatusPacket(receivedData);
+            Assert.AreEqual(0xFF, statusPacket.StartByte1);
+            Assert.AreEqual(0xFF, statusPacket.StartByte2);
+            Assert.AreEqual(0x05, statusPacket.ServoId);
+            Assert.AreEqual(0x0A, statusPacket.LengthOfResult);
+            Assert.AreEqual(0x00, statusPacket.Error);
+            Assert.AreEqual(37.39, statusPacket.Position, 0.01);
+            Assert.AreEqual(1028, statusPacket.Speed);
+            Assert.AreEqual(Direction.Clockwise, statusPacket.LoadDirection);
+            Assert.AreEqual(5, statusPacket.Load);
+            Assert.AreEqual(12.3, statusPacket.Voltage);
+            Assert.AreEqual(38, statusPacket.Temperature);
+            Assert.AreEqual(new byte[] { 0x7F, 0x02, 0x04, 0x04, 0x05, 0x04, 0x7B, 0x26 }, statusPacket.Parameters);
+            Assert.AreEqual(0xBD, statusPacket.CheckSum);
+            Assert.AreEqual(receivedData, statusPacket.ReceivedData);
+        }
+
+
 
         [Test, Ignore("Ned to be connected to robot")]
         public void LiveSensorTest()
@@ -112,7 +170,7 @@ namespace Robot.Tests
 
             while (true)
             {
-                var instructionPacket = new InstructionPacketReadPresentLoad(5, communicationObject);
+                var instructionPacket = new InstructionPacketReadServoSensorData(5, communicationObject);
                 instructionPacket.Send();
                 Thread.Sleep(2000);  
             }

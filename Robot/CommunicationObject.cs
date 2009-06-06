@@ -41,12 +41,11 @@ namespace Robot
             int lastred;
             do
             {
-               
                 lastred = _comPort.ReadByte();
                 Console.Write(lastred.ToString("X2") + ",");
             } while (_comPort.BytesToRead > 0);
 
-            Console.WriteLine("ute ur loppen");
+           // Console.WriteLine("ute ur loppen");
         }
 
         public bool IsOpen
