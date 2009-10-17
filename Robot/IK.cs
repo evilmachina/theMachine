@@ -19,41 +19,11 @@
 // THE SOFTWARE.
 // 
 using System;
-using Robot;
 
 namespace Robot
 {
     public class IK
     {
-
-
-        public static JointAngeles CalculateIK_Old(double coxaLength, double femurLength, double tibiaLength, double x,
-                                               double y)
-        {
-            //The location of the wrist.
-            double xWristLocation = locationOfWristX(x, coxaLength);
-            double yWristLocation = y;
-
-            double lengthSW = lengthBetwenSolderandWrist(xWristLocation, yWristLocation);
-            double a1 = Math.Atan2(xWristLocation, yWristLocation);
-            double a2 =
-                Math.Acos(
-                    ((femurLength*femurLength) - (tibiaLength*tibiaLength) + (lengthSW*lengthSW))
-                    /((2*femurLength)*lengthSW));
-
-            double femurAngleInRad = a1 + a2;
-            double tibiaAngleInRad = Math.Acos(
-                ((femurLength*femurLength) + (tibiaLength*tibiaLength) - (lengthSW*lengthSW))
-                /((2*femurLength)*tibiaLength));
-
-            double femurAngle = femurAngleInRad*180/Math.PI;
-            double tibiaAngle = RadToDeg(tibiaAngleInRad);
-
-            return new JointAngeles(femurAngle, tibiaAngle);
-        }
-
-       
-
         public static JointAngeles CalculateIK(double coxaLength, double femurLength, double tibiaLength, double x,
                                                double y)
         {
@@ -73,8 +43,8 @@ namespace Robot
                 ((femurLength * femurLength) + (tibiaLength * tibiaLength) - (lengthSW * lengthSW))
                 / ((2 * femurLength) * tibiaLength));
 
-            double femurAngle = (femurAngleInRad * 180 / Math.PI);
-            double tibiaAngle = (((tibiaAngleInRad * 180 / Math.PI))) ;
+            double femurAngle = RadToDeg(femurAngleInRad);
+            double tibiaAngle = RadToDeg(tibiaAngleInRad );
 
             return new JointAngeles(femurAngle, tibiaAngle);
         }
@@ -91,7 +61,7 @@ namespace Robot
 
         public static double CalculateIKOneJoint(double X, double Y)
         {
-            return (Math.Atan2(Y, X) * 180 / Math.PI);
+            return RadToDeg(Math.Atan2(Y, X));
         }
 
         public static double RadToDeg(double angleInRad)
