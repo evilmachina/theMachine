@@ -67,17 +67,17 @@ namespace Robot.Tests
             // Console.WriteLine(BitConverter.ToString(instructionPacket.ToByte()));
         }
 
-        [Test, Ignore("Ned to be connected to robot")]
+        [Test, Ignore("Need to be connected to robot")]
         public void CanFindCorectComPort()
         {
-            var communicationObject = new CommunicationObject("COM5");
+            var communicationObject = new CommunicationObject("COM4");
             communicationObject.Open();
             Assert.IsTrue(communicationObject.IsOpen);
             communicationObject.Dispose();
         }
 
 
-        [Test, Ignore("Ned to be connected to robot")]
+        [Test, Ignore("Need to be connected to robot")]
         public void CanMoveServo5()
         {
             ISender sender = new CommunicationObject("COM4");
@@ -91,7 +91,7 @@ namespace Robot.Tests
 
         }
 
-        [Test, Ignore("Ned to be connected to robot")]
+        [Test, Ignore("Need to be connected to robot")]
         public void CanSendInstructionPacketPingToServoID1()
         {
             ISender sender = new CommunicationObject("COM5");
@@ -102,7 +102,7 @@ namespace Robot.Tests
             ((CommunicationObject) sender).Dispose();
         }
 
-        [Test, Ignore("Ned to be connected to robot")]
+        [Test, Ignore("Need to be connected to robot")]
         public void MakeQuiet()
         {
             var ids = new byte[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18};

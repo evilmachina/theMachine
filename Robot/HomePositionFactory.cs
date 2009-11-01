@@ -49,9 +49,15 @@ namespace Robot
         public static HomePosition CreateHomePosition3()
         {
             var Y = 10.4;
-            HomePosition homePosition = new HomePosition(new LegPosition(5.7, Y, -9.8726896031426), new LegPosition(-5.7, Y, -9.8726896031426),
-                                                         new LegPosition(11.4, Y, 0.0), new LegPosition(-11.4, Y, 0.0),
-                                                         new LegPosition(5.7, Y, 9.8726896031426), new LegPosition(-5.7, Y, 9.8726896031426)
+            HomePosition homePosition = new HomePosition(
+
+                new LegPosition(5.7, Y, -9.8726896031426),
+                new LegPosition(-5.7, Y, -9.8726896031426),
+                new LegPosition(11.4, Y, 0.0),
+                new LegPosition(-11.4, Y, 0.0),
+                new LegPosition(5.7, Y, 9.8726896031426),
+                new LegPosition(-5.7, Y, 9.8726896031426)
+
                 );
             return homePosition;
         }
@@ -67,6 +73,21 @@ namespace Robot
                 new LegPosition(-11.4, Y, 0.0),
                 new LegPosition(5.7, Y, 9.8726896031426),
                 new LegPosition(-5.7, Y, 9.8726896031426)
+                );
+            return homePosition;
+        }
+
+        public static HomePosition CreateHomePosition5()
+        {
+            var Y = 17;
+            HomePosition homePosition = new HomePosition(
+
+                new LegPosition(5.7/2, Y, -9.8726896031426/2),
+                new LegPosition(-5.7 / 2, Y, -9.8726896031426 / 2),
+                new LegPosition(11.4 / 2, Y, 0.0),
+                new LegPosition(-11.4 / 2, Y, 0.0),
+                new LegPosition(5.7 / 2, Y, 9.8726896031426 / 2),
+                new LegPosition(-5.7 / 2, Y, 9.8726896031426 / 2)
                 );
             return homePosition;
         }

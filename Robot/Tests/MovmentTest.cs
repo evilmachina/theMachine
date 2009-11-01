@@ -190,7 +190,7 @@ namespace Robot.Tests
         }
 
 
-        [Test, Ignore("Ned to be connected to robot")]
+        [Test, Ignore("Need to be connected to robot")]
         public void MoveBodyToStartPosition()
          {
             ISender sender = new CommunicationObject("COM4");
@@ -206,7 +206,7 @@ namespace Robot.Tests
              ((CommunicationObject)sender).Dispose();
          }
 
-        [Test, Ignore("Ned to be connected to robot")]
+        [Test, Ignore("Need to be connected to robot")]
         public void MoveBodyToStartPosition2()
         {
             ISender sender = new CommunicationObject(COMPORT);
@@ -221,7 +221,7 @@ namespace Robot.Tests
 
             ((CommunicationObject)sender).Dispose();
         }
-        [Test, Ignore("Ned to be connected to robot")]
+        [Test, Ignore("Need to be connected to robot")]
         public void MoveBodyToStartPosition3()
         {
             ISender sender = new CommunicationObject(COMPORT);
@@ -255,7 +255,7 @@ namespace Robot.Tests
             ((CommunicationObject)sender).Dispose();
         }
 
-        [Test, Ignore("Ned to be connected to robot")]
+        [Test, Ignore("Need to be connected to robot")]
         public void MoveBody5cmFovard()
         {
             ISender sender = new CommunicationObject(COMPORT);
@@ -273,7 +273,7 @@ namespace Robot.Tests
             ((CommunicationObject)sender).Dispose();
         }
 
-        [Test, Ignore("Ned to be connected to robot")]
+        [Test, Ignore("Need to be connected to robot")]
         public void MoveBody5cmBack()
         {
             ISender sender = new CommunicationObject(COMPORT);
@@ -290,7 +290,7 @@ namespace Robot.Tests
             ((CommunicationObject)sender).Dispose();
         }
 
-        [Test, Ignore("Ned to be connected to robot")]
+        [Test, Ignore("Need to be connected to robot")]
         public void RotateBody15degresCW()
         {
             ISender sender = new CommunicationObject(COMPORT);
@@ -306,7 +306,7 @@ namespace Robot.Tests
             ((CommunicationObject)sender).Dispose();
         }
 
-        [Test, Ignore("Ned to be connected to robot")]
+        [Test, Ignore("Need to be connected to robot")]
         public void RotateBody15degresCCW()
         {
             ISender sender = new CommunicationObject(COMPORT);
@@ -322,7 +322,7 @@ namespace Robot.Tests
             ((CommunicationObject)sender).Dispose();
         }
 
-        [Test, Ignore("Ned to be connected to robot")]
+        [Test, Ignore("Need to be connected to robot")]
         public void CanWakeForward()
         {
             ISender sender = new CommunicationObject(COMPORT);
@@ -342,7 +342,7 @@ namespace Robot.Tests
             ((CommunicationObject)sender).Dispose();
         }
 
-        [Test, Ignore("Ned to be connected to robot")]
+        [Test, Ignore("Need to be connected to robot")]
         public void CanWakeFastForward()
         {
             ISender sender = new CommunicationObject(COMPORT);
@@ -363,7 +363,7 @@ namespace Robot.Tests
         }
 
 
-        [Test, Ignore("Ned to be connected to robot")]
+        [Test, Ignore("Need to be connected to robot")]
         public void CanWakeSideways()
         {
             ISender sender = new CommunicationObject(COMPORT);
@@ -383,7 +383,7 @@ namespace Robot.Tests
             ((CommunicationObject)sender).Dispose();
         }
 
-        [Test, Ignore("Ned to be connected to robot")]
+        [Test, Ignore("Need to be connected to robot")]
         public void CanTurnCW()
         {
             ISender sender = new CommunicationObject(COMPORT);
@@ -404,7 +404,7 @@ namespace Robot.Tests
         }
 
 
-        [Test, Ignore("Ned to be connected to robot")]
+        [Test, Ignore("Need to be connected to robot")]
         public void CanTurnCWZ30()
         {
             ISender sender = new CommunicationObject(COMPORT);
@@ -425,7 +425,7 @@ namespace Robot.Tests
             ((CommunicationObject)sender).Dispose();
         }
 
-         [Test, Ignore("Ned to be connected to robot")]
+         [Test, Ignore("Need to be connected to robot")]
         public void CanCalculateRippelGate6()
          {
              ISender sender = new CommunicationObject(COMPORT);

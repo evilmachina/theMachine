@@ -26,7 +26,7 @@ namespace Robot
 {
     public class RippelGate6
     {
-        private const double _stepHeight = 4;
+        public  double _stepHeight = 4;
         private readonly Phoenix _phoenix;
         private readonly HomePosition _homePosition;
         List<MovmentComandAX12>[] _movments = new List<MovmentComandAX12>[6];

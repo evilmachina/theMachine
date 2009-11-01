@@ -162,7 +162,7 @@ namespace Robot.Tests
 
 
 
-        [Test, Ignore("Ned to be connected to robot")]
+        [Test, Ignore("Need to be connected to robot")]
         public void LiveSensorTest()
         {
             CommunicationObject communicationObject = new CommunicationObject("COM4");

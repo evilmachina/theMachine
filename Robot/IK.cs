@@ -49,7 +49,7 @@ namespace Robot
             return new JointAngeles(femurAngle, tibiaAngle);
         }
 
-        private static double lengthBetwenSolderandWrist(double location, double wristLocation)
+        public static double lengthBetwenSolderandWrist(double location, double wristLocation)
         {
             return Math.Sqrt(location*location + wristLocation*wristLocation);
         }

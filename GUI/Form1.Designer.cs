@@ -186,7 +186,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(48, 20);
             this.textBox2.TabIndex = 14;
-            this.textBox2.Text = "1";
+            this.textBox2.Text = "0,3";
             this.textBox2.Leave += new System.EventHandler(this.StepValue_Leave);
             this.textBox2.Enter += new System.EventHandler(this.StepValue_Enter);
             // 
@@ -207,7 +207,7 @@
             this.degrees.Name = "degrees";
             this.degrees.Size = new System.Drawing.Size(48, 20);
             this.degrees.TabIndex = 17;
-            this.degrees.Text = "1";
+            this.degrees.Text = "5";
             this.degrees.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             this.degrees.Leave += new System.EventHandler(this.StepValue_Leave);
             this.degrees.Enter += new System.EventHandler(this.StepValue_Enter);
