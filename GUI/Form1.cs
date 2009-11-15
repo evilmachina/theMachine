@@ -15,7 +15,7 @@ namespace GUI
         Phoenix _phoenix = RobotFactory.CreatePhoenix(HomePositionFactory.CreateHomePosition());
         RippelGate6 _rippelGate6;
         int i = 0;
-        private IInputDevice _inputDevice;
+        private IInputDeviceBody _inputDeviceBody;
         private DateTime _lastsent = DateTime.Now;
         private object lockobject = new object();
 
@@ -25,12 +25,12 @@ namespace GUI
             _rippelGate6 = new RippelGate6(_phoenix, _homePosition);
             KeyPreview = true;
 
-            _inputDevice = new TreDConnexion();
-            _inputDevice.MovmentInput += OnMovmentInput;
+            _inputDeviceBody = new SpaceNavigator();
+            _inputDeviceBody.MovmentInput += OnMovmentInput;
           _rippelGate6._stepHeight = 2;
         }
 
-        private void OnMovmentInput(object sender, MovmentEventArg e)
+        private void OnMovmentInput(object sender, MovmentEventBodyArg e)
         {
             Console.WriteLine("R: " + e.Movment.Rotation);
             if (Math.Abs(e.Movment.Rotation) > 0.1)

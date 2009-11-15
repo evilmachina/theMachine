@@ -6,7 +6,7 @@ using System.Threading;
 
 namespace RobotControl
 {
-    public class VR920Tracker : IInputDevice
+    public class VR920Tracker : IInputDeviceHead
     {
         [DllImport("IWEARDRV.dll", SetLastError = true, CharSet = CharSet.Auto)]
         private static extern int IWROpenTracker();
@@ -36,12 +36,19 @@ namespace RobotControl
 
         public VR920Tracker()
         {
-          //  _mainForm = mainForm;
+            ConnectToVR920();
+            StartPollingVR920();
+        }
 
+        private void ConnectToVR920()
+        {
             int openResult = IWROpenTracker();
             if (openResult != ERROR_SUCCESS)
                 throw new ApplicationException("Could not connect to VR920: " + openResult);
+        }
 
+        private void StartPollingVR920()
+        {
             _timer = new Timer(VR920Poller, null, Timeout.Infinite, TimerPeriod);
         }
 
@@ -51,10 +58,7 @@ namespace RobotControl
             {
                 int yaw, pitch, roll;
 
-                int result = IWRGetTracking(out yaw, out pitch, out roll);
-
-                if (result != ERROR_SUCCESS)
-                    throw new ApplicationException("Could not get VR920 tracking information: " + result);
+                GetTracking(out yaw, out roll, out pitch);
 
                 _yawValues.Add(VR920ToRadians(yaw));
                 _rollValues.Add(VR920ToRadians(roll));
@@ -75,11 +79,21 @@ namespace RobotControl
                     _yawValues.Clear();
                     _pitchValues.Clear();
                     _rollValues.Clear();
+                    
 
-                   // RollPitchYaw rollPitchYaw = new RollPitchYaw(_lastRoll, _lastPitch, _lastYaw);
-                  
+                    RollPitchYaw rollPitchYaw = new RollPitchYaw(_lastRoll, _lastPitch, _lastYaw);
+                    MovmentEventHeadArg movmentEventHeadArg = new MovmentEventHeadArg(rollPitchYaw);
+                    InvokeMovmentInput(movmentEventHeadArg);
                 }
             }
+        }
+
+        private void GetTracking(out int yaw, out int roll, out int pitch)
+        {
+            int result = IWRGetTracking(out yaw, out pitch, out roll);
+
+            if (result != ERROR_SUCCESS)
+                throw new ApplicationException("Could not get VR920 tracking information: " + result);
         }
 
         private double Average(List<double> values, double last)
@@ -119,6 +133,12 @@ namespace RobotControl
             _timer.Change(Timeout.Infinite, TimerPeriod);
         }
 
-        public event EventHandler<MovmentEventArg> MovmentInput;
+        public event EventHandler<MovmentEventHeadArg> MovmentInput;
+
+        public void InvokeMovmentInput(MovmentEventHeadArg e)
+        {
+            EventHandler<MovmentEventHeadArg> handler = MovmentInput;
+            if (handler != null) handler(this, e);
+        }
     }
 }

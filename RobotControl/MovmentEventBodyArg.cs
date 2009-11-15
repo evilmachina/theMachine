@@ -2,11 +2,11 @@ using System;
 
 namespace RobotControl
 {
-    public class MovmentEventArg : EventArgs
+    public class MovmentEventBodyArg : EventArgs
     {
         public Movment Movment { get; private set; }
 
-        public MovmentEventArg(Movment movment)
+        public MovmentEventBodyArg(Movment movment)
         {
             Movment = movment;
         }

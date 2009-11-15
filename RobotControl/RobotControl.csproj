@@ -77,13 +77,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IInputDeviceBody.cs" />
+    <Compile Include="IInputDeviceHead.cs" />
+    <Compile Include="MovmentEventBodyArg.cs" />
+    <Compile Include="MovmentEventHeadArg.cs" />
+    <Compile Include="RollPitchYaw.cs" />
+    <Compile Include="SpaceNavigator.cs" />
     <Compile Include="VR920Tracker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="IInputDevice.cs" />
     <Compile Include="Tests\MouseTests.cs" />
     <Compile Include="Movment.cs" />
-    <Compile Include="MovmentEventArg.cs" />
-    <Compile Include="TreDConnexion.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Robot\Robot.csproj">

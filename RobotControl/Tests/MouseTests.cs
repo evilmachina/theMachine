@@ -16,33 +16,33 @@ namespace RobotControl.Tests
         //[Test]
         //public void CanGetForvardCommand()
         //{
-        //    IInputDevice inputDevice = new FakeInputDevice();
+        //    IInputDeviceBody inputDevice = new FakeInputDeviceBody();
         //    inputDevice.MovmentInput += OnMovmentInput;
         //    Movment movment = new Movment();
-        //    ((FakeInputDevice)inputDevice).RaseMovmentEvent(movment);
+        //    ((FakeInputDeviceBody)inputDevice).RaseMovmentEvent(movment);
 
         //   // Assert.That();
         //}
 
-        private void OnMovmentInput(object sender, MovmentEventArg e)
+        private void OnMovmentInput(object sender, MovmentEventBodyArg e)
         {
             
         }
     }
 
-    public class FakeInputDevice : IInputDevice
+    public class FakeInputDeviceBody : IInputDeviceBody
     {
-        public event EventHandler<MovmentEventArg> MovmentInput;
+        public event EventHandler<MovmentEventBodyArg> MovmentInput;
 
-        private void InvokeSensorInput(MovmentEventArg e)
+        private void InvokeSensorInput(MovmentEventBodyArg e)
         {
-            EventHandler<MovmentEventArg> input = MovmentInput;
+            EventHandler<MovmentEventBodyArg> input = MovmentInput;
             if (input != null) input(this, e);
         }
 
         public void RaseMovmentEvent(Movment movment)
         {
-            MovmentEventArg movmentEventArg = new MovmentEventArg(movment);
+            MovmentEventBodyArg movmentEventBodyArg = new MovmentEventBodyArg(movment);
         }
     }
 }

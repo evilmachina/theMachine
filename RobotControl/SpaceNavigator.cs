@@ -8,15 +8,15 @@ namespace RobotControl
     /// <summary>
     /// 3dconnexion's SpaceNavigator  
     /// </summary>
-    public class SpaceNavigator : IInputDevice
+    public class SpaceNavigator : IInputDeviceBody
     {
         private readonly Device _device;
         private readonly Sensor _sensor;
-        public event EventHandler<MovmentEventArg> MovmentInput;
+        public event EventHandler<MovmentEventBodyArg> MovmentInput;
 
-        private void InvokeMovmentInput(MovmentEventArg e)
+        private void InvokeMovmentInput(MovmentEventBodyArg e)
         {
-            EventHandler<MovmentEventArg> input = MovmentInput;
+            EventHandler<MovmentEventBodyArg> input = MovmentInput;
             if (input != null) input(this, e);
         }
 
@@ -51,8 +51,8 @@ namespace RobotControl
             AngleAxis angleAxis = _sensor.Rotation;
 
             Movment movment = GetMovment(translation, angleAxis);
-            MovmentEventArg movmentEventArg = new MovmentEventArg(movment);
-            InvokeMovmentInput(movmentEventArg);
+            MovmentEventBodyArg movmentEventBodyArg = new MovmentEventBodyArg(movment);
+            InvokeMovmentInput(movmentEventBodyArg);
         }
 
         private Movment GetMovment(Vector3D translation, AngleAxis angleAxis)
