@@ -5,7 +5,10 @@ using TDx.TDxInput;
 
 namespace RobotControl
 {
-    public class TreDConnexion : IInputDevice
+    /// <summary>
+    /// 3dconnexion's SpaceNavigator  
+    /// </summary>
+    public class SpaceNavigator : IInputDevice
     {
         private readonly Device _device;
         private readonly Sensor _sensor;
@@ -18,7 +21,7 @@ namespace RobotControl
         }
 
 
-        public TreDConnexion()
+        public SpaceNavigator()
         {
             try
             {
