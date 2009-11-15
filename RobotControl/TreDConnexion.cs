@@ -73,8 +73,8 @@ namespace RobotControl
 
             double speed = IK.lengthBetwenSolderandWrist(X, Y) / 1600;
             var rotation = (angleAxis.Y * angleAxis.Angle) / 1600;
-            var centerX = (angleAxis.Z * angleAxis.Angle) / 100;
-            var centerY = (angleAxis.X * angleAxis.Angle) / 100;
+            var centerX = (angleAxis.Z * angleAxis.Angle) / 75;
+            var centerY = (angleAxis.X * angleAxis.Angle) / 75;
 
 
             return new Movment(angle, direction, speed, rotation, centerX, centerY);

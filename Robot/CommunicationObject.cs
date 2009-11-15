@@ -53,16 +53,10 @@ namespace Robot
             get { return _comPort.IsOpen; }
         }
 
-        #region IDisposable Members
-
         public void Dispose()
         {
             _comPort.Close();
         }
-
-        #endregion
-
-        #region ISender Members
 
         public void Send(byte[] bytes)
         {
@@ -72,8 +66,6 @@ namespace Robot
             }
             _comPort.Write(bytes, 0, bytes.Length);
         }
-
-        #endregion
 
         private void SetupComPort(string comPortName)
         {

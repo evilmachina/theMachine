@@ -98,6 +98,7 @@
     <Compile Include="Tests\RobotTest.cs" />
     <Compile Include="Side.cs" />
     <Compile Include="Tests\SennsorTests.cs" />
+    <Compile Include="Tests\UpdateAX12ID.cs" />
     <Compile Include="Tibia.cs" />
   </ItemGroup>
   <ItemGroup>
