@@ -49,6 +49,12 @@
             this.label4 = new System.Windows.Forms.Label();
             this.zCenter = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.lbRoll = new System.Windows.Forms.Label();
+            this.lbPitch = new System.Windows.Forms.Label();
+            this.lbYaw = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // ForwardButton
@@ -177,8 +183,8 @@
             this.StepValue.Size = new System.Drawing.Size(48, 20);
             this.StepValue.TabIndex = 13;
             this.StepValue.Text = "1";
-            this.StepValue.Leave += new System.EventHandler(this.StepValue_Leave);
             this.StepValue.Enter += new System.EventHandler(this.StepValue_Enter);
+            this.StepValue.Leave += new System.EventHandler(this.StepValue_Leave);
             // 
             // textBox2
             // 
@@ -187,8 +193,8 @@
             this.textBox2.Size = new System.Drawing.Size(48, 20);
             this.textBox2.TabIndex = 14;
             this.textBox2.Text = "0,3";
-            this.textBox2.Leave += new System.EventHandler(this.StepValue_Leave);
             this.textBox2.Enter += new System.EventHandler(this.StepValue_Enter);
+            this.textBox2.Leave += new System.EventHandler(this.StepValue_Leave);
             // 
             // xCenter
             // 
@@ -198,8 +204,8 @@
             this.xCenter.TabIndex = 18;
             this.xCenter.Text = "0";
             this.xCenter.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            this.xCenter.Leave += new System.EventHandler(this.StepValue_Leave);
             this.xCenter.Enter += new System.EventHandler(this.StepValue_Enter);
+            this.xCenter.Leave += new System.EventHandler(this.StepValue_Leave);
             // 
             // degrees
             // 
@@ -209,8 +215,8 @@
             this.degrees.TabIndex = 17;
             this.degrees.Text = "5";
             this.degrees.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
-            this.degrees.Leave += new System.EventHandler(this.StepValue_Leave);
             this.degrees.Enter += new System.EventHandler(this.StepValue_Enter);
+            this.degrees.Leave += new System.EventHandler(this.StepValue_Leave);
             // 
             // label3
             // 
@@ -239,8 +245,8 @@
             this.zCenter.Size = new System.Drawing.Size(48, 20);
             this.zCenter.TabIndex = 20;
             this.zCenter.Text = "0";
-            this.zCenter.Leave += new System.EventHandler(this.StepValue_Leave);
             this.zCenter.Enter += new System.EventHandler(this.StepValue_Enter);
+            this.zCenter.Leave += new System.EventHandler(this.StepValue_Leave);
             // 
             // label5
             // 
@@ -251,11 +257,71 @@
             this.label5.TabIndex = 19;
             this.label5.Text = "Y center";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(204, 257);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(25, 13);
+            this.label6.TabIndex = 21;
+            this.label6.Text = "Roll";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(204, 284);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(31, 13);
+            this.label7.TabIndex = 22;
+            this.label7.Text = "Pitch";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(204, 307);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(28, 13);
+            this.label8.TabIndex = 23;
+            this.label8.Text = "Yaw";
+            // 
+            // lbRoll
+            // 
+            this.lbRoll.AutoSize = true;
+            this.lbRoll.Location = new System.Drawing.Point(241, 258);
+            this.lbRoll.Name = "lbRoll";
+            this.lbRoll.Size = new System.Drawing.Size(25, 13);
+            this.lbRoll.TabIndex = 24;
+            this.lbRoll.Text = "Roll";
+            // 
+            // lbPitch
+            // 
+            this.lbPitch.AutoSize = true;
+            this.lbPitch.Location = new System.Drawing.Point(241, 284);
+            this.lbPitch.Name = "lbPitch";
+            this.lbPitch.Size = new System.Drawing.Size(25, 13);
+            this.lbPitch.TabIndex = 25;
+            this.lbPitch.Text = "Roll";
+            // 
+            // lbYaw
+            // 
+            this.lbYaw.AutoSize = true;
+            this.lbYaw.Location = new System.Drawing.Point(241, 307);
+            this.lbYaw.Name = "lbYaw";
+            this.lbYaw.Size = new System.Drawing.Size(25, 13);
+            this.lbYaw.TabIndex = 26;
+            this.lbYaw.Text = "Roll";
+            // 
             // frmBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(534, 387);
+            this.Controls.Add(this.lbYaw);
+            this.Controls.Add(this.lbPitch);
+            this.Controls.Add(this.lbRoll);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.zCenter);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.xCenter);
@@ -310,6 +376,12 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox zCenter;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lbRoll;
+        private System.Windows.Forms.Label lbPitch;
+        private System.Windows.Forms.Label lbYaw;
 
     }
 }

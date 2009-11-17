@@ -41,7 +41,7 @@ namespace RobotControl
         }
 
         private void ConnectToVR920()
-        {
+        { 
             int openResult = IWROpenTracker();
             if (openResult != ERROR_SUCCESS)
                 throw new ApplicationException("Could not connect to VR920: " + openResult);
@@ -52,6 +52,7 @@ namespace RobotControl
             _timer = new Timer(VR920Poller, null, Timeout.Infinite, TimerPeriod);
         }
 
+     
         private void VR920Poller(object state)
         {
             lock (this)

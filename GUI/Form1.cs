@@ -18,6 +18,7 @@ namespace GUI
         private IInputDeviceBody _inputDeviceBody;
         private DateTime _lastsent = DateTime.Now;
         private object lockobject = new object();
+        private IInputDeviceHead _inputDeviceHead;
 
         public frmBase()
         {
@@ -25,9 +26,59 @@ namespace GUI
             _rippelGate6 = new RippelGate6(_phoenix, _homePosition);
             KeyPreview = true;
 
+            SetUpInputDevises();
+
+
+            _rippelGate6._stepHeight = 2;
+        }
+
+        private void SetUpInputDevises()
+        {
+            SetUpInputDeviceForBody();
+
+            SetUpInputDeviceForHead();
+        }
+
+        private void SetUpInputDeviceForHead()
+        {
+            _inputDeviceHead = new VR920Tracker();
+            _inputDeviceHead.MovmentInput += OnHeadMovmentInput;
+            ((VR920Tracker)_inputDeviceHead).Enable();
+        }
+
+        private void OnHeadMovmentInput(object sender, MovmentEventHeadArg e)
+        {
+            SetLabelText(e.RollPitchYaw);
+        }
+
+        private void SetLabelText(RollPitchYaw number)
+        {
+            // label.Text = number.ToString();
+            // Do NOT do this, as we are on a different thread.
+
+            // Check if we need to call BeginInvoke.
+            if (this.InvokeRequired)
+            {
+                // Pass the same function to BeginInvoke,
+                // but the call would come on the correct
+                // thread and InvokeRequired will be false.
+                Invoke(new Action<RollPitchYaw>(SetLabelText),new object[] { number});
+                return;
+            }
+
+            lbRoll.Text = number.LastRoll.ToString();
+            lbPitch.Text = number.LastPitch.ToString();
+            lbYaw.Text = number.LastYaw.ToString();
+            
+        }
+
+      
+
+
+        private void SetUpInputDeviceForBody()
+        {
             _inputDeviceBody = new SpaceNavigator();
             _inputDeviceBody.MovmentInput += OnMovmentInput;
-          _rippelGate6._stepHeight = 2;
         }
 
         private void OnMovmentInput(object sender, MovmentEventBodyArg e)
