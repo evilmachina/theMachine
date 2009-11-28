@@ -31,6 +31,7 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -104,6 +105,10 @@
     <Compile Include="StatusPacketes\Direction.cs" />
     <Compile Include="StatusPacketes\StatusPacket.cs" />
     <Compile Include="Tests\ConnectTest.cs" />
+    <Compile Include="Head.cs" />
+    <Compile Include="HeadServo.cs" />
+    <Compile Include="Tests\HeadTests.cs" />
+    <Compile Include="IHead.cs" />
     <Compile Include="Tests\IKTests.cs" />
     <Compile Include="Tests\MovmentTest.cs" />
     <Compile Include="Tests\RobotTest.cs" />

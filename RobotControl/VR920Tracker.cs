@@ -61,9 +61,9 @@ namespace RobotControl
 
                 GetTracking(out yaw, out roll, out pitch);
 
-                _yawValues.Add(VR920ToRadians(yaw));
-                _rollValues.Add(VR920ToRadians(roll));
-                _pitchValues.Add(VR920ToRadians(pitch));
+                _yawValues.Add(VR920ToDegrees(yaw));
+                _rollValues.Add(VR920ToDegrees(roll));
+                _pitchValues.Add(VR920ToDegrees(pitch));
 
                 if (_yawValues.Count == 5)
                 {
@@ -109,12 +109,8 @@ namespace RobotControl
             return total / (values.Count + 1);
         }
 
-        private double VR920ToRadians(int vr920Value)
-        {
-            return (vr920Value * .00549) * (Math.PI / 180);
-        }
 
-        private double VR920ToDegrees(int vr920Value)
+        private static double VR920ToDegrees(int vr920Value)
         {
             return (vr920Value * .00549);
         }

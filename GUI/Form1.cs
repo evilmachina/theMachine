@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using Robot;
 using Robot.InstructionPackets;
 using RobotControl;
+using TDx.TDxInput;
 
 
 namespace GUI
@@ -19,6 +20,9 @@ namespace GUI
         private DateTime _lastsent = DateTime.Now;
         private object lockobject = new object();
         private IInputDeviceHead _inputDeviceHead;
+        private Keyboard _keyboard;
+        private IHead _head;
+        private DateTime _lastsenthead;
 
         public frmBase()
         {
@@ -26,17 +30,32 @@ namespace GUI
             _rippelGate6 = new RippelGate6(_phoenix, _homePosition);
             KeyPreview = true;
 
+            SetUpHead();
+            
+
             SetUpInputDevises();
-
-
+            
             _rippelGate6._stepHeight = 2;
+        }
+
+        private void SetUpHead()
+        {
+            HeadServo yawServo = new HeadServo(0, 19, -150, 150);
+            HeadServo pitchServo = new HeadServo(0, 20, -90, 80);
+            HeadServo rollServo = new HeadServo(-45, 21, -90, 90);
+            _head = new Head(yawServo, pitchServo, rollServo);
         }
 
         private void SetUpInputDevises()
         {
             SetUpInputDeviceForBody();
-
             SetUpInputDeviceForHead();
+         
+        }
+
+        private void keyboard_KeyDown(int keycode)
+        {
+           ((VR920Tracker)_inputDeviceHead).SetZero();
         }
 
         private void SetUpInputDeviceForHead()
@@ -49,6 +68,9 @@ namespace GUI
         private void OnHeadMovmentInput(object sender, MovmentEventHeadArg e)
         {
             SetLabelText(e.RollPitchYaw);
+            _head.SetPosition(e.RollPitchYaw.LastYaw, e.RollPitchYaw.LastPitch, e.RollPitchYaw.LastRoll);
+            if (ReadyToSendHeadCommand())
+                SendCommand(_head.GetMovements());
         }
 
         private void SetLabelText(RollPitchYaw number)
@@ -98,13 +120,13 @@ namespace GUI
         {
             try
             {
-                if (ReadyToSend())
+                if (ReadyToSendBodyCommand())
                 {
                     Console.WriteLine(movment.Angle);
                     ServoBase.TimeBox = Convert.ToDouble(textBox2.Text);
                     
                     var stepValue = Convert.ToDouble(StepValue.Text) * movment.Direction * movment.Speed;
-                    new InstructionPacketSyncMovment(_sender, _rippelGate6.NextSequence(movment.Angle, stepValue)).Send();
+                    SendCommand(_rippelGate6.NextSequence(movment.Angle, stepValue));
                 }
 
             }
@@ -116,11 +138,16 @@ namespace GUI
 
         }
 
+        private void SendCommand(MovmentComandAX12[] movmentComandAx12S)
+        {
+            new InstructionPacketSyncMovment(_sender, movmentComandAx12S).Send();
+        }
+
         private void Rotate2(Movment movment)
         {
             try
             {
-                if (ReadyToSend())
+                if (ReadyToSendBodyCommand())
                 {
                     ServoBase.TimeBox = Convert.ToDouble(textBox2.Text);
                     new InstructionPacketSyncMovment(_sender,
@@ -138,7 +165,7 @@ namespace GUI
             }
         }
 
-        private bool ReadyToSend()
+        private bool ReadyToSendBodyCommand()
         {
             lock (lockobject)
             {
@@ -147,6 +174,21 @@ namespace GUI
                 if (_lastsent.AddMilliseconds((int) (ServoBase.TimeBox*1000)) <= DateTime.Now)
                 {
                     _lastsent = DateTime.Now;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private bool ReadyToSendHeadCommand()
+        {
+            lock (lockobject)
+            {
+
+
+                if (_lastsenthead.AddMilliseconds((int)(10)) <= DateTime.Now)
+                {
+                    _lastsenthead = DateTime.Now;
                     return true;
                 }
             }
@@ -267,6 +309,11 @@ namespace GUI
         private void frmBase_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnSetZero_Click(object sender, EventArgs e)
+        {
+            ((VR920Tracker)_inputDeviceHead).SetZero();
         }
 
  

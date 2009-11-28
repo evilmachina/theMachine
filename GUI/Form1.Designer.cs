@@ -55,6 +55,7 @@
             this.lbRoll = new System.Windows.Forms.Label();
             this.lbPitch = new System.Windows.Forms.Label();
             this.lbYaw = new System.Windows.Forms.Label();
+            this.btnSetZero = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ForwardButton
@@ -311,11 +312,22 @@
             this.lbYaw.TabIndex = 26;
             this.lbYaw.Text = "Roll";
             // 
+            // btnSetZero
+            // 
+            this.btnSetZero.Location = new System.Drawing.Point(386, 300);
+            this.btnSetZero.Name = "btnSetZero";
+            this.btnSetZero.Size = new System.Drawing.Size(46, 40);
+            this.btnSetZero.TabIndex = 27;
+            this.btnSetZero.Text = "set zero";
+            this.btnSetZero.UseVisualStyleBackColor = true;
+            this.btnSetZero.Click += new System.EventHandler(this.btnSetZero_Click);
+            // 
             // frmBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(534, 387);
+            this.Controls.Add(this.btnSetZero);
             this.Controls.Add(this.lbYaw);
             this.Controls.Add(this.lbPitch);
             this.Controls.Add(this.lbRoll);
@@ -382,6 +394,7 @@
         private System.Windows.Forms.Label lbRoll;
         private System.Windows.Forms.Label lbPitch;
         private System.Windows.Forms.Label lbYaw;
+        private System.Windows.Forms.Button btnSetZero;
 
     }
 }

@@ -42,7 +42,7 @@ namespace Robot.Tests
         public void testss()
         {
              CommunicationObject communicationObject = new CommunicationObject("COM3");
-            CanMoveServo(23,communicationObject);
+            CanMoveServo(21,communicationObject);
         }
     }
 
