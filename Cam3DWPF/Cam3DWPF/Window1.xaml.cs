@@ -91,7 +91,7 @@ namespace AvCapWPF
             else
                 _stereoEnabled = false;
 
-            DispatcherTimer timer = new DispatcherTimer(TimeSpan.FromMilliseconds(50), DispatcherPriority.Normal, delegate
+            DispatcherTimer timer = new DispatcherTimer(TimeSpan.FromMilliseconds(100), DispatcherPriority.Normal, delegate
             {
                 update();
             }, this.Dispatcher);
